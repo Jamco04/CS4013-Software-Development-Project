@@ -1,4 +1,4 @@
 package com.mycompany.payrollsystem.staff.fulltime;
 
-public class Administrative extends FullTimeEmployee {
+public class Clinical extends FullTimeEmployee {
 }

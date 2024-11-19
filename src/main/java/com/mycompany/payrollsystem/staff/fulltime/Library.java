@@ -1,4 +1,4 @@
 package com.mycompany.payrollsystem.staff.fulltime;
 
-public class Library {
+public class Library extends FullTimeEmployee {
 }

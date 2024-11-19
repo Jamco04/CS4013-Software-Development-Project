@@ -1,4 +1,4 @@
 package com.mycompany.payrollsystem.staff.fulltime;
 
-public class EducationProcurementServices {
+public class EducationProcurementServices extends FullTimeEmployee {
 }
