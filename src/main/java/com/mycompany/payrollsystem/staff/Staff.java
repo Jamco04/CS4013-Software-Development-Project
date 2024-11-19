@@ -11,7 +11,7 @@ public class Staff {
     public Staff(){
     }
     
-    public Staff(String title, int scalePoint){
+    public Staff(String name, int id, String title, int scalePoint){
         this.title = title;
         this.scalePoint = scalePoint;
     }
