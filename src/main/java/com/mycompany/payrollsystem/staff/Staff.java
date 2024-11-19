@@ -1,4 +1,4 @@
-package com.mycompany.payrollsystem.staff.parttime;
+package com.mycompany.payrollsystem.staff;
 
 
 public class Staff {
