@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Staff {
 
 
+    private String name;
+    private int id;
     private String title;
     private int scalePoint;
-    ArrayList<Double> payRate;
 
 
 
