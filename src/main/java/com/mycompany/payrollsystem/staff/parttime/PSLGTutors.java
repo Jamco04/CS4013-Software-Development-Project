@@ -1,7 +1,7 @@
 package com.mycompany.payrollsystem.staff.parttime;
 
 public class PSLGTutors extends PartTimeEmployee {
-    public PSLGTutors(String title, int scalePoint, double hourlyRate, double hoursWorked) {
-        super(title, scalePoint, hourlyRate, hoursWorked);
+    public PSLGTutors(String name, int id, String title, int scalePoint, double hourlyRate, double hoursWorked) {
+        super(name, id, title, scalePoint, hourlyRate, hoursWorked);
     }
 }

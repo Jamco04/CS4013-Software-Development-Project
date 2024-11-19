@@ -14,6 +14,7 @@ public class PartTimeEmployee extends Staff {
 
 
 
+
     public PartTimeEmployee(){
 
     }
