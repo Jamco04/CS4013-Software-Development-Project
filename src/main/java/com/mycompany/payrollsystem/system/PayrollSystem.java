@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
+// next: different payslips and displays for full time and part time staff
 public class PayrollSystem {
     private double lowerRate = .2;
     private double upperRate = .4;
