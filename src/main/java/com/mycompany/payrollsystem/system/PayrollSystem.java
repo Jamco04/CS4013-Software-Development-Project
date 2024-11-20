@@ -11,6 +11,8 @@ public class PayrollSystem {
     private double upperRate = .4;
     private double uscRate = 0;
     double prsiRate =.04;
+    double unionFee = 35;
+    double healthInsuranceFee = 40;
 
 
     public Payslip generatePayslip(Staff staff, double salary) {
@@ -44,15 +46,16 @@ public class PayrollSystem {
         tax += grossPay * uscRate;
 
         tax += grossPay * prsiRate;
+        tax += unionFee + healthInsuranceFee;
 
         return tax;
     }
-    private double calculateUSCRate(double annualSalary) {
-        if (annualSalary <= 12012) {
+    private double calculateUSCRate(double Salary) {
+        if (Salary <= 12012) {
             return 0.005;
-        } else if (annualSalary <= 25760) {
+        } else if (Salary <= 25760) {
             return 0.02;
-        } else if (annualSalary <= 70044) {
+        } else if (Salary <= 70044) {
             return 0.04;
         } else {
             return 0.08;
