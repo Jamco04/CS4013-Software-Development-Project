@@ -9,11 +9,13 @@ public class PartTimeEmployee extends Staff {
     private double hoursWorked;
 
 
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
 
-
-
-
-
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
 
     public PartTimeEmployee(){
 
