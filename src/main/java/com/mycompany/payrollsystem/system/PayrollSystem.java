@@ -4,6 +4,8 @@ package com.mycompany.payrollsystem.system;
 
 import com.mycompany.payrollsystem.staff.Staff;
 import java.time.LocalDate;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class PayrollSystem {
@@ -29,7 +31,6 @@ public class PayrollSystem {
 
 
         return new Payslip(staff.getName(), staff.getId(), grossPay, tax, netPay, payPeriod);
-
 
     }
     private double calculateTax(double Salary, double grossPay) {
@@ -60,5 +61,28 @@ public class PayrollSystem {
         } else {
             return 0.08;
         }
+    }
+    public void displayPayslip(Payslip payslip) {
+        String fileTitle = "Payslip_" + payslip.getName() + ".txt";
+        // possible error with spaces?
+        try (FileWriter writer = new FileWriter(fileTitle)) {
+            writer.write("====================================\n");
+            writer.write("              Payslip\n");
+            writer.write("====================================\n");
+            writer.write("Name       : " + payslip.getName() + "\n");
+            writer.write("ID         : " + payslip.getId() + "\n");
+            writer.write("Pay Period : " + payslip.getPayPeriod() + "\n");
+            writer.write("------------------------------------\n");
+            writer.write("Gross Pay  : " + payslip.getGrossPay());
+            writer.write("Tax        : " + payslip.getTax());
+            writer.write("Net Pay    : " + payslip.getNetPay());
+            writer.write("====================================\n");
+            // possible use of String.format command to printf variables with 2 decimal places
+        }
+             catch (IOException e) {
+            System.out.println("Error: "+e);
+        }
+
+
     }
 }

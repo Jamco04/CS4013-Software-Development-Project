@@ -23,4 +23,28 @@ public class Payslip{
 
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getGrossPay() {
+        return grossPay;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public double getNetPay() {
+        return netPay;
+    }
+
+    public String getPayPeriod() {
+        return payPeriod;
+    }
 }
