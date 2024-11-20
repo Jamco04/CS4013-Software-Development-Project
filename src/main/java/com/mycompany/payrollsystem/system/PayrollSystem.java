@@ -65,6 +65,7 @@ public class PayrollSystem {
     public void displayPayslip(Payslip payslip) {
         String fileTitle = "Payslip_" + payslip.getName() + ".txt";
         // possible error with spaces?
+        // package called BufferedWriter might be more efficient, investigate
         try (FileWriter writer = new FileWriter(fileTitle)) {
             writer.write("====================================\n");
             writer.write("              Payslip\n");
