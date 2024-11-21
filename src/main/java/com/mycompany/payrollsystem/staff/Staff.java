@@ -17,6 +17,7 @@ public abstract class Staff {
         this.name = name;
         this.title = title;
         this.scalePoint = scalePoint;
+        System.out.println("Staff created correctly");
     }
 
     public abstract double calculatePay(); //different in subclasses
