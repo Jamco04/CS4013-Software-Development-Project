@@ -7,13 +7,16 @@ public class FullTimeEmployee extends Staff {
     private String category;
     private double salary;
 
-    public FullTimeEmployee(String name, int id, String title, int scalePoint) {
+    public FullTimeEmployee(String name, int id, String category, String title, int scalePoint) {
         super(name, id, title, scalePoint);
-        this.salary = salary;
+        this.category = category;
     }
 
-    public double getSalary(PayLoader loader){
-        salary = loader.getPay(category, String.valueOf(salary), String.valueOf(scalePoint));
+    public void calculateSalary(PayLoader loader){
+        salary = loader.getPay(this.category, String.valueOf(this.title), String.valueOf(this.scalePoint));
+    }
+
+    public double getSalary(){  //only call this after calculating the salary
         return salary;
     }
 

@@ -21,7 +21,7 @@ public class PayLoader {
                 String role = data[1];
                 String tier = data[2];
                 double pay = Double.parseDouble(data[3]);
-
+                System.out.printf("category: %s, role: %s, tier: %s", category, role, tier);
                 String key = generateKey(category, role, tier);
                 payGrades.put(key, pay);
             }
@@ -30,6 +30,7 @@ public class PayLoader {
 
     public double getPay(String category, String role, String tier) {   // returns value
         String key = generateKey(category, role, tier);
+        System.out.println("They key is: " + key);    //testing purposes
         return payGrades.getOrDefault(key, 0.0);
     }
 

@@ -1,5 +1,6 @@
 package com.mycompany.payrollsystem.system;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
+import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 
 import java.io.IOException;
 
@@ -8,12 +9,21 @@ public class TestClass {
         try {
             // Load pay from the CSV
             PayLoader loader = new PayLoader();
-            loader.loadPay("/src/database/Salaries.csv");   //this object now contains hashmap for key-salary
+            loader.loadPay("src/database/Salaries.csv");   //this object now contains hashmap for key-salary
 
             // Create a FullTimeEmployee
-            FullTimeEmployee employee1 = new FullTimeEmployee("Adam Urban", 23381752, "Professor", 2);
+            FullTimeEmployee employee1 = new FullTimeEmployee("Adam Urban", 23381752, "Academic", "Professor",2);
 
-            employee1.getSalary();
+            employee1.calculateSalary(loader);
+            System.out.println(employee1.getSalary());
+
+            // Create a PartTimeEmployee
+            PartTimeEmployee employee2 = new PartTimeEmployee("James Connolly", 2336892, "LabTutor", 2);
+
+            employee2.calculatePayRate(loader);
+            System.out.println(employee2.getSalary());
+
+
             /*
             // Print details
             System.out.println(employee);
