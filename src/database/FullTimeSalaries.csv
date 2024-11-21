@@ -41,7 +41,6 @@ Academic,Assistant Professor,9,62314
 Academic,Assistant Professor,10,63965
 Academic,Teaching Assistant,1,37010
 Academic,Teaching Assistant,2,40061
-
 Administrative,Senior Administrative Officer III,1,106800
 Administrative,Senior Administrative Officer III,2,113990
 Administrative,Senior Administrative Officer III,3,121181
@@ -121,7 +120,6 @@ Administrative,Administrator,15,39212
 Administrative,Administrator,16,39926
 Administrative,Administrator,17,40912
 Administrative,Administrator,18,41892
-
 Education Procurement Services,EPS Portfolio Manager,1,86389
 Education Procurement Services,EPS Portfolio Manager,2,90698
 Education Procurement Services,EPS Portfolio Manager,3,95005
@@ -152,7 +150,6 @@ Education Procurement Services,EPS Category Specialist,5,53219
 Education Procurement Services,EPS Category Specialist,6,55306
 Education Procurement Services,EPS Category Specialist,7,57462
 Education Procurement Services,EPS Category Specialist,8,59558
-
 Library,Sub Librarian,1,64830
 Library,Sub Librarian,2,68413
 Library,Sub Librarian,3,71505
@@ -231,7 +228,6 @@ Library,Library Attendant,11,38970
 Library,Library Attendant,12,39512
 Library,Library Attendant,13,40039
 Library,Library Attendant,14,40230
-
 Information Technology,Analyst Programmer III,1,67132
 Information Technology,Analyst Programmer III,2,79088
 Information Technology,Analyst Programmer III,3,82103
@@ -317,7 +313,6 @@ Information Technology,Temporary Computer Assistant,6,37353
 Information Technology,Temporary Computer Assistant,7,37714
 Information Technology,Temporary Computer Assistant,8,38072
 Information Technology,Temporary Computer Assistant,9,38428
-
 Technical,Chief Technical Officer,1,64838
 Technical,Chief Technical Officer,2,67536
 Technical,Chief Technical Officer,3,70205
@@ -354,7 +349,6 @@ Technical,Laboratory Attendant,6,37352
 Technical,Laboratory Attendant,7,37714
 Technical,Laboratory Attendant,8,38072
 Technical,Laboratory Attendant,9,38429
-
 Service Staff,Sen Porter/Attendant,1,41472
 Service Staff,Sen Porter/Attendant,2,41678
 Service Staff,Sen Porter/Attendant,3,41873
@@ -476,7 +470,6 @@ Service Staff,Grounds Foreperson,3,51204
 Service Staff,Grounds Foreperson,4,52137
 Service Staff,Grounds Foreperson,5,53117
 Service Staff,Grounds Foreperson,6,54078
-
 Teachers,Teaching Fellow,1,62069
 Teachers,Teaching Fellow,2,73092
 Teachers,Teaching Fellow,3,77007
@@ -506,7 +499,6 @@ Teachers,Associate Teacher,7,45716
 Teachers,Associate Teacher,8,46978
 Teachers,Associate Teacher,9,47948
 Teachers,Associate Teacher,10,50419
-
 Clinical,Therapies Regional Supervisors Regional Placement Facilitator,1,62038
 Clinical,Therapies Regional Supervisors Regional Placement Facilitator,2,63360
 Clinical,Therapies Regional Supervisors Regional Placement Facilitator,3,64724
@@ -529,15 +521,13 @@ Clinical,Clinical Fellow,4,81095
 Clinical,Clinical Fellow,5,84824
 Clinical,Clinical Fellow,6,88562
 Clinical,Clinical Fellow,7,92294
-
-ULAC (based on 40hr week),Assistant Senior Instructor,1,31099
-ULAC (based on 40hr week),Lead Instructor,1,29370
-ULAC (based on 40hr week),Multi Activity Instructor (Grade I),1,25334
-ULAC (based on 40hr week),Multi Activity Instructor (Grade I),2,27639
-ULAC (based on 40hr week),Multi Activity Instructor (Grade II),1,25910
-ULAC (based on 40hr week),Assistant Instructor,1,23363
-ULAC (based on 40hr week),Assistant Instructor,2,25576
-
-CO-OP STUDENTS,CO-OP STUDENTS,1,25306
-CO-OP STUDENTS,CO-OP STUDENTS,2,25350
+ULAC,Assistant Senior Instructor,1,31099
+ULAC,Lead Instructor,1,29370
+ULAC,Multi Activity Instructor (Grade I),1,25334
+ULAC,Multi Activity Instructor (Grade I),2,27639
+ULAC,Multi Activity Instructor (Grade II),1,25910
+ULAC,Assistant Instructor,1,23363
+ULAC,Assistant Instructor,2,25576
+ULAC,CO-OP STUDENTS,1,25306
+ULAC,CO-OP STUDENTS,2,25350
 
