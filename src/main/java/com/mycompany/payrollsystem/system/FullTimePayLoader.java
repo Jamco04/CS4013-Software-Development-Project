@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PayLoader {
+public class FullTimePayLoader {
     // Data structure:
     //      Key: category, role, tier
     //      Value: pay

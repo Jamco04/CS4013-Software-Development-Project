@@ -20,8 +20,6 @@ public class Payslip{
     this.tax = tax;
     this.netPay = netPay;
     this.payPeriod = payPeriod;
-
-
     }
 
     public String getName() {

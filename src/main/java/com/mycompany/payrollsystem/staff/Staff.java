@@ -1,15 +1,24 @@
 package com.mycompany.payrollsystem.staff;
-import java.util.ArrayList;
 
 
+public abstract class Staff {
 
-public class Staff {
+    // salary in FullTime, payRate in PartTime
+    // category only in FullTime
 
+    protected String name;
+    protected int id;
+    protected String title;
+    protected int scalePoint;
 
-    private String name;
-    private int id;
-    private String title;
-    private int scalePoint;
+    public Staff(String name, int id, String title, int scalePoint){
+        this.name = name;
+        this.title = title;
+        this.scalePoint = scalePoint;
+    }
+
+    public abstract double calculatePay(); //different in subclasses
+    public abstract void updateScalePoint(int newScalePoint, double newPay); //different in subclasses
 
 
     public String getName() {
@@ -44,13 +53,6 @@ public class Staff {
         this.scalePoint = scalePoint;
     }
 
-    public Staff(){
-    }
-    
-    public Staff(String name, int id, String title, int scalePoint){
-        this.title = title;
-        this.scalePoint = scalePoint;
-    }
     
     
 }
