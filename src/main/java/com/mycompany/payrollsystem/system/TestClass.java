@@ -7,14 +7,13 @@ public class TestClass {
     public static void main(String[] args){
         try {
             // Load pay from the CSV
-            FullTimePayLoader fullTimeLoader = new FullTimePayLoader();
-            fullTimeLoader.loadPay("/src/database/FullTimeSalaries.csv");
-            FullTimePayLoader partTimeLoader = new FullTimePayLoader();
-            partTimeLoader.loadPay("/src/database/PartTimeSalaries.csv");
+            PayLoader loader = new PayLoader();
+            loader.loadPay("/src/database/Salaries.csv");   //this object now contains hashmap for key-salary
 
             // Create a FullTimeEmployee
-            FullTimeEmployee employee = new FullTimeEmployee("Adam Urban", 23381752, "Professor", 2);
+            FullTimeEmployee employee1 = new FullTimeEmployee("Adam Urban", 23381752, "Professor", 2);
 
+            employee1.getSalary();
             /*
             // Print details
             System.out.println(employee);

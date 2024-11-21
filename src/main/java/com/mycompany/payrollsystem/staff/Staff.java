@@ -1,6 +1,8 @@
 package com.mycompany.payrollsystem.staff;
 
 
+import com.mycompany.payrollsystem.system.PayLoader;
+
 public abstract class Staff {
 
     // salary in FullTime, payRate in PartTime
@@ -19,6 +21,7 @@ public abstract class Staff {
 
     public abstract double calculatePay(); //different in subclasses
     public abstract void updateScalePoint(int newScalePoint, double newPay); //different in subclasses
+
 
 
     public String getName() {
