@@ -19,6 +19,7 @@ public abstract class Staff {
     public Staff(String name, int id, String title, int scalePoint){
         StaffContainer.add(this);
         this.name = name;
+        this.id = id;
         this.title = title;
         this.scalePoint = scalePoint;
         System.out.println("Staff created correctly");
@@ -63,11 +64,10 @@ public abstract class Staff {
 
     @Override
     public String toString() {
-        return "Staff{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", title='" + title + '\'' +
-                ", scalePoint=" + scalePoint +
-                '}';
+        return
+                "name: " + name + "\n" +
+                "id: " + id + "\n" +
+                "title: " + title + "\n" +
+                "scalePoint: " + scalePoint;
     }
 }

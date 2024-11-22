@@ -26,7 +26,7 @@ public class StaffContainer {
 
     public static void listAllStaff() {
         for (Staff staff : staffMap.values()) {
-            System.out.println(staff);
+            System.out.println(staff.toString());
         }
     }
 }

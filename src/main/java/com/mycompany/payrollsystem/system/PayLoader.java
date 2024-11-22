@@ -10,9 +10,9 @@ public class PayLoader {
     // Data structure:
     //      Key: category, role, tier
     //      Value: pay
-    private Map<String, Double> payGrades = new HashMap<>();
+    private static Map<String, Double> payGrades = new HashMap<>();
 
-    public void loadPay(String csvFile) throws IOException {
+    public static void loadPay(String csvFile) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
             String line = reader.readLine(); // Skip header
             while ((line = reader.readLine()) != null) {
@@ -33,7 +33,7 @@ public class PayLoader {
         return payGrades.getOrDefault(key, 0.0);
     }
 
-    private String generateKey(String category, String role, String tier) { // returns key
+    private static String generateKey(String category, String role, String tier) { // returns key
         return category + "-" + role + "-" + tier;
     }
 }

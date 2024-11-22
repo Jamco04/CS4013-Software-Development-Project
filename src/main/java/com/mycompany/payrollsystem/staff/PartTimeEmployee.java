@@ -6,13 +6,14 @@ import com.mycompany.payrollsystem.system.PayLoader;
 public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate
     private double hoursWorked;
-    private double pay = getPay(loader);
+    private double pay;
 
 
 
     public PartTimeEmployee(String name, int id, String title, int scalePoint, double hoursWorked){
         super(name, id, title, scalePoint);
         this.hoursWorked= hoursWorked;
+        this.pay = getPay(loader);
     }
 
 
@@ -33,13 +34,13 @@ public class PartTimeEmployee extends Staff {
 
     @Override
     public String toString() {
-        return "PartTimeEmployee{" +
-                "payRate=" + payRate +
-                ", hoursWorked=" + hoursWorked +
-                ", name='" + name + '\'' +
-                ", id=" + id +
-                ", title='" + title + '\'' +
-                ", scalePoint=" + scalePoint +
-                '}';
+        return
+                "name: " + name + " | " +
+                "id: " + id + " | " +
+                "title: " + title + " | " +
+                "scalePoint: " + scalePoint + " | " +
+                "payRate: " + payRate + " | " +
+                "hoursWorked: " + hoursWorked + " | " +
+                "pay: " + pay;
     }
 }
