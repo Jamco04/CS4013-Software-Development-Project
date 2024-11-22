@@ -36,14 +36,17 @@ public class Admin {
             String category = scanner.nextLine();
 
             FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint);
-            fullTimeEmployee.calculateSalary(payLoader);
+            fullTimeEmployee.getPay(payLoader);
             staffList.add(fullTimeEmployee);
 
             System.out.println("Full-time employee added successfully!");
 
         } else if ("part-time".equals(type)) {
-            PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint);
-            partTimeEmployee.calculatePayRate(payLoader);
+            System.out.println("Enter hours worked:");
+            double hoursWorked = scanner.nextInt();
+
+            PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint, hoursWorked);
+            partTimeEmployee.getPay(payLoader);
             staffList.add(partTimeEmployee);
 
             System.out.println("Part-time employee added successfully!");

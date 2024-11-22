@@ -4,26 +4,27 @@ import com.mycompany.payrollsystem.system.PayLoader;
 
 public class FullTimeEmployee extends Staff {
 
-    private String category;
-    private double salary = 0.0;
+    private String category;    //only FullTimeEmployee has category (Director/Academic/...)
+    private double salary;      //only FullTimeEmployee has annual salary
 
     public FullTimeEmployee(String name, int id, String category, String title, int scalePoint) {
         super(name, id, title, scalePoint);
+        this.salary = getPay(loader);
         this.category = category;
     }
 
 
     @Override
-    public double getPay(PayLoader loader){
+    public double getPay(PayLoader loader){ //gets called in the constructor
         salary = loader.getPay(this.category, String.valueOf(this.title), String.valueOf(this.scalePoint));
         return salary;
     }
 
     @Override
-    public void updateScalePoint(int newScalePoint, PayLoader loader) {
-        this.scalePoint = newScalePoint;
-        this.salary = loader.getPay(this.category, String.valueOf(this.title), String.valueOf(this.scalePoint));
+    public void updateScalePoint(PayLoader loader) {
     }
+
+
 
     @Override
     public String toString() {

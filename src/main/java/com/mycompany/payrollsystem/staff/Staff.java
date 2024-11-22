@@ -8,6 +8,7 @@ public abstract class Staff {
     // salary in FullTime, payRate in PartTime
     // category only in FullTime
 
+    protected PayLoader loader;
     protected String name;
     protected int id;
     protected String title;
@@ -20,7 +21,7 @@ public abstract class Staff {
         System.out.println("Staff created correctly");
     }
 
-    public abstract void updateScalePoint(int newScalePoint, PayLoader loader); //different in subclasses
+    public abstract void updateScalePoint(PayLoader loader); //different in subclasses
     public abstract double getPay(PayLoader loader); //different in subclasses
 
 

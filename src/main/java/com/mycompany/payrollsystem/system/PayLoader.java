@@ -21,7 +21,6 @@ public class PayLoader {
                 String role = data[1];
                 String tier = data[2];
                 double pay = Double.parseDouble(data[3]);
-                System.out.printf("category: %s, role: %s, tier: %s", category, role, tier);
                 String key = generateKey(category, role, tier);
                 payGrades.put(key, pay);
             }

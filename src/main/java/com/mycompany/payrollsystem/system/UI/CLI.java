@@ -2,6 +2,7 @@ package com.mycompany.payrollsystem.system.UI;
 
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.user.Admin;
+import com.mycompany.payrollsystem.system.user.HR;
 
 import java.util.Scanner;
 
@@ -39,7 +40,8 @@ public class CLI
                     runAdminCLI(adminAccess);
                     break;
                 case "hr":
-                    runHRCLI();
+                    HR hr = new HR(loader);
+                    runAdminCLI(hr);
                     break;
                 case "employee":
                     runEmployeeCLI();
@@ -73,8 +75,36 @@ public class CLI
     }
 
 
-    private void runHRCLI() {
-        // Similar menu but tailored for HR tasks like viewing payslips, updating details, etc.
+    private void runHRCLI(HR hrAccess) {
+        while (true) {
+            System.out.println("\nHR CLI Options:");
+            System.out.println("1. View Staff");
+            System.out.println("2. Update Staff");
+            System.out.println("3. Remove Staff");
+            System.out.println("4. Exit");
+
+            System.out.print("Choose an option: ");
+            int option = Integer.parseInt(in.nextLine());
+
+            switch (option) {
+                case 1:
+                    for (Staff staff : staffList) {
+                        System.out.println(staff);
+                    }
+                    break;
+                case 2:
+                    updateStaff();
+                    break;
+                case 3:
+                    removeStaff();
+                    break;
+                case 4:
+                    System.out.println("Exiting HR CLI...");
+                    return;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
     }
 
     private void runEmployeeCLI() {

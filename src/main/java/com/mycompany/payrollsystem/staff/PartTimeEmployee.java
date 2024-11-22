@@ -6,30 +6,29 @@ import com.mycompany.payrollsystem.system.PayLoader;
 public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate
     private double hoursWorked;
+    private double pay;
 
 
 
-    public PartTimeEmployee(String name, int id, String title, int scalePoint){
+    public PartTimeEmployee(String name, int id, String title, int scalePoint, double hoursWorked){
         super(name, id, title, scalePoint);
-        this.payRate = payRate;
         this.hoursWorked= hoursWorked;
+        this.pay = getPay(loader);
     }
 
 
-    public double getPayRate(){  //only call this after calculating the salary
+    public double getPayRate(){
         return payRate;
     }
 
     @Override
-    public double getPay(PayLoader loader) {
+    public double getPay(PayLoader loader) {    //sets payRate and return "salary"
         payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
         return payRate * hoursWorked; // Pay is based on hours worked
     }
 
     @Override
-    public void updateScalePoint(int newScalePoint, PayLoader loader) {
-        this.scalePoint = newScalePoint;
-        this.payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));;
+    public void updateScalePoint(PayLoader loader) {
     }
 
 
