@@ -21,6 +21,12 @@ public class FullTimeEmployee extends Staff {
 
     @Override
     public void updateScalePoint(PayLoader loader) {
+        if (loader.getPay(category, title, String.valueOf(scalePoint)) == -1){  //check if next scalepoint not available
+
+        }
+        else {
+            scalePoint += 1;
+        }
     }
 
 
