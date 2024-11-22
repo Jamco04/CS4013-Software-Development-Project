@@ -2,6 +2,7 @@ package com.mycompany.payrollsystem.staff;
 
 
 import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.StaffContainer;
 
 public abstract class Staff {
 
@@ -9,12 +10,14 @@ public abstract class Staff {
     // category only in FullTime
 
     protected PayLoader loader;
+
     protected String name;
     protected int id;
     protected String title;
     protected int scalePoint;
 
     public Staff(String name, int id, String title, int scalePoint){
+        StaffContainer.add(this);
         this.name = name;
         this.title = title;
         this.scalePoint = scalePoint;

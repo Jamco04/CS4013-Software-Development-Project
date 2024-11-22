@@ -40,8 +40,8 @@ public class CLI
                     runAdminCLI(adminAccess);
                     break;
                 case "hr":
-                    HR hr = new HR(loader);
-                    runAdminCLI(hr);
+                    //HR hr = new HR(loader);
+                    //runAdminCLI(hr);
                     break;
                 case "employee":
                     runEmployeeCLI();
@@ -73,7 +73,7 @@ public class CLI
             }
         }
     }
-
+/*
 
     private void runHRCLI(HR hrAccess) {
         while (true) {
@@ -106,7 +106,7 @@ public class CLI
             }
         }
     }
-
+*/
     private void runEmployeeCLI() {
         // Similar menu but limited to viewing personal details and payslip.
     }
