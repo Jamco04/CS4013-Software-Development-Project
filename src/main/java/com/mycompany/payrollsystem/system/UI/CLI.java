@@ -1,5 +1,7 @@
-package com.mycompany.payrollsystem.system;
+package com.mycompany.payrollsystem.system.UI;
 
+import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.user.Admin;
 
 import java.util.Scanner;
 
@@ -16,6 +18,8 @@ public class CLI
         in = new Scanner(System.in);
     }
 
+    PayLoader loader = new PayLoader();
+
     /**
      Runs the system.
      */
@@ -28,34 +32,36 @@ public class CLI
 
         boolean more = false;
 
-        while (more)
-        switch (role) {
-            case "admin":
-                runAdminCLI();
-                break;
-            case "hr":
-                runHRCLI();
-                break;
-            case "employee":
-                runEmployeeCLI();
-                break;
-            default:
-                System.out.println("Please enter a VALID role (Admin/HR/Employee):");
-                more = true;
+        while (more) {
+            switch (role) {
+                case "admin":
+                    Admin adminAccess = new Admin(loader);
+                    runAdminCLI(adminAccess);
+                    break;
+                case "hr":
+                    runHRCLI();
+                    break;
+                case "employee":
+                    runEmployeeCLI();
+                    break;
+                default:
+                    System.out.println("Please enter a VALID role (Admin/HR/Employee):");
+                    more = true;
+            }
         }
     }
 
-    private void runAdminCLI() {
+    private void runAdminCLI(Admin adminAccess) {
         boolean more = true;
         while (more) {
             System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Quit");
             String command = in.nextLine();
             switch (command) {
                 case "1":
-                    addStaff();
+                    adminAccess.addStaff();
                     break;
                 case "2":
-                    viewStaff();
+                    adminAccess.viewStaff();
                     break;
                 case "3":
                     more = false;

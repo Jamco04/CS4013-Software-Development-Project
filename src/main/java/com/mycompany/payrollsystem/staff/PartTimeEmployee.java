@@ -15,15 +15,14 @@ public class PartTimeEmployee extends Staff {
         this.hoursWorked= hoursWorked;
     }
 
-    public void calculatePayRate(PayLoader loader){
-        payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
-    }
 
     public double getPayRate(){  //only call this after calculating the salary
         return payRate;
     }
 
-    public double getPay() {
+    @Override
+    public double getPay(PayLoader loader) {
+        payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
         return payRate * hoursWorked; // Pay is based on hours worked
     }
 

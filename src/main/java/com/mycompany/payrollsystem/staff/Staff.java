@@ -21,6 +21,7 @@ public abstract class Staff {
     }
 
     public abstract void updateScalePoint(int newScalePoint, PayLoader loader); //different in subclasses
+    public abstract double getPay(PayLoader loader); //different in subclasses
 
 
 

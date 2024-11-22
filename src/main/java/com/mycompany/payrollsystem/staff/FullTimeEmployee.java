@@ -12,11 +12,10 @@ public class FullTimeEmployee extends Staff {
         this.category = category;
     }
 
-    public void calculateSalary(PayLoader loader) {
-        salary = loader.getPay(this.category, String.valueOf(this.title), String.valueOf(this.scalePoint));
-    }
 
-    public double getSalary(){  //only call this after calculating the pay, otherwise returns 0.0
+    @Override
+    public double getPay(PayLoader loader){
+        salary = loader.getPay(this.category, String.valueOf(this.title), String.valueOf(this.scalePoint));
         return salary;
     }
 

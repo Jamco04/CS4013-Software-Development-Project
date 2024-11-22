@@ -1,6 +1,8 @@
-package com.mycompany.payrollsystem.system;
+package com.mycompany.payrollsystem.Test;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
+import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.UI.CLI;
 
 import java.io.IOException;
 
@@ -14,14 +16,15 @@ public class TestClass {
             // Create a FullTimeEmployee
             FullTimeEmployee employee1 = new FullTimeEmployee("Adam Urban", 23381752, "Academic", "Professor",2);
 
-            employee1.calculateSalary(loader);
-            System.out.println(employee1.getSalary());
+            System.out.println(employee1.getPay(loader));
 
             // Create a PartTimeEmployee
             PartTimeEmployee employee2 = new PartTimeEmployee("James Connolly", 2336892, "LabTutor", 2);
 
-            employee2.calculatePayRate(loader);
-            System.out.println(employee2.getSalary());
+            System.out.println(employee2.getPay(loader));
+
+            CLI cli = new CLI();
+            cli.run();
 
 
             /*
