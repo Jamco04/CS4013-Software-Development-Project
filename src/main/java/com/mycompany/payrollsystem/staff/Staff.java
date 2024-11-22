@@ -9,7 +9,7 @@ public abstract class Staff {
     // salary in FullTime, payRate in PartTime
     // category only in FullTime
 
-    protected PayLoader loader;
+    protected PayLoader loader = new PayLoader();
 
     protected String name;
     protected int id;

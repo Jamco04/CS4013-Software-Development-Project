@@ -19,7 +19,7 @@ public class TestClass {
             System.out.println(employee1.getPay(loader));
 
             // Create a PartTimeEmployee
-            PartTimeEmployee employee2 = new PartTimeEmployee("James Connolly", 2336892, "LabTutor", 2);
+            PartTimeEmployee employee2 = new PartTimeEmployee("James Connolly", 2336892, "LabTutor", 2, 5);
 
             System.out.println(employee2.getPay(loader));
 

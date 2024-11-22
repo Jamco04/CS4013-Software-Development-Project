@@ -31,24 +31,26 @@ public class CLI
         System.out.println("Please enter your role (Admin/HR/Employee):");
         String role = in.nextLine().toLowerCase();
 
-        boolean more = false;
+        boolean more = true;
 
         while (more) {
             switch (role) {
                 case "admin":
                     Admin adminAccess = new Admin(loader);
                     runAdminCLI(adminAccess);
+                    more = false;
                     break;
                 case "hr":
                     //HR hr = new HR(loader);
                     //runAdminCLI(hr);
+                    more = false;
                     break;
                 case "employee":
                     runEmployeeCLI();
+                    more = false;
                     break;
                 default:
                     System.out.println("Please enter a VALID role (Admin/HR/Employee):");
-                    more = true;
             }
         }
     }
