@@ -20,8 +20,7 @@ public abstract class Staff {
         System.out.println("Staff created correctly");
     }
 
-    public abstract double calculatePay(); //different in subclasses
-    public abstract void updateScalePoint(int newScalePoint, double newPay); //different in subclasses
+    public abstract void updateScalePoint(int newScalePoint, PayLoader loader); //different in subclasses
 
 
 

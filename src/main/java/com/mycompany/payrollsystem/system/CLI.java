@@ -27,6 +27,7 @@ public class CLI
         String role = in.nextLine().toLowerCase();
 
         boolean more = false;
+
         while (more)
         switch (role) {
             case "admin":
@@ -44,65 +45,33 @@ public class CLI
         }
     }
 
+    private void runAdminCLI() {
         boolean more = true;
-        StaffContainer staff = new StaffContainer(); // holds the appointments
-
-        while (more)
-        {
-            System.out.println("A)dd  C)ancel  S)how  Q)uit");
-            String command = in.nextLine().toUpperCase();
-
-            if (command.equals("A"))
-            {
-                System.out.println("Appointment: date start_time end_time description");
-                String line = in.nextLine();
-                Appointment a = new Appointment(line);  // creates the new appointment and adds it to calendar
-                if (calendar.checkCollision(a)){
-                    System.out.println("Appointment collides with existing appointment.");
-                }
-                else {
-                    staff.add(a);
-                }
-            }
-            else if (command.equals("C"))
-            {
-                System.out.println("Enter Appointment Date");
-                String line = in.nextLine();
-                AppointmentDate day = new AppointmentDate(line);    // holds the date
-                Appointment a = getChoice(calendar.getAppointmentsForDay(day)); // lets user select specific appointment on that date
-                if (a != null)  // cancel that appointment
-                    calendar.cancel(a);
-            }
-            else if (command.equals("S"))
-            {
-                System.out.println("Date");
-                String line = in.nextLine();
-                AppointmentDate day = new AppointmentDate(line);
-                for (Appointment appt : calendar.getAppointmentsForDay(day))    // shows all appointments on that date
-                    System.out.println(appt.format());
-            }
-            else if (command.equals("Q"))
-            {
-                more = false;   // stops the while loop
+        while (more) {
+            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Quit");
+            String command = in.nextLine();
+            switch (command) {
+                case "1":
+                    addStaff();
+                    break;
+                case "2":
+                    viewStaff();
+                    break;
+                case "3":
+                    more = false;
+                    break;
+                default:
+                    System.out.println("Invalid command.");
             }
         }
     }
 
-    private Appointment getChoice(ArrayList<Appointment> choices)
-    {
-        if (choices.size() == 0) return null;
-        while (true)
-        {
-            char c = 'A';
-            for (Appointment choice : choices)
-            {
-                System.out.println(c + ") " + choice.format());
-                c++;
-            }
-            String input = in.nextLine();
-            int n = input.toUpperCase().charAt(0) - 'A';
-            if (0 <= n && n < choices.size())
-                return choices.get(n);
-        }
+
+    private void runHRCLI() {
+        // Similar menu but tailored for HR tasks like viewing payslips, updating details, etc.
+    }
+
+    private void runEmployeeCLI() {
+        // Similar menu but limited to viewing personal details and payslip.
     }
 }

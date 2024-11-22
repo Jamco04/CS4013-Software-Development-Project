@@ -9,6 +9,8 @@ import java.io.IOException;
 
 // next: different payslips and displays for full time and part time staff
 public class PayrollSystem {
+    private PayLoader loader;
+
     private double lowerRate = .2;
     private double upperRate = .4;
     private double uscRate = 0;

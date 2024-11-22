@@ -19,28 +19,20 @@ public class PartTimeEmployee extends Staff {
         payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
     }
 
-    public double getSalary(){  //only call this after calculating the salary
+    public double getPayRate(){  //only call this after calculating the salary
         return payRate;
     }
 
-    @Override
-    public double calculatePay() {
+    public double getPay() {
         return payRate * hoursWorked; // Pay is based on hours worked
     }
 
     @Override
-    public void updateScalePoint(int newScalePoint, double newPayRate) {
+    public void updateScalePoint(int newScalePoint, PayLoader loader) {
         this.scalePoint = newScalePoint;
-        this.payRate = newPayRate;
+        this.payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));;
     }
 
-    public void setHourlyRate(double payRate) {
-        this.payRate = payRate;
-    }
-
-    public void setHoursWorked(double hoursWorked) {
-        this.hoursWorked = hoursWorked;
-    }
 
     @Override
     public String toString() {
