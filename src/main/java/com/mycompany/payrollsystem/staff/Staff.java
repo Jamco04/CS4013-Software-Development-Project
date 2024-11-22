@@ -57,6 +57,13 @@ public abstract class Staff {
         this.scalePoint = scalePoint;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", scalePoint=" + scalePoint +
+                '}';
+    }
 }

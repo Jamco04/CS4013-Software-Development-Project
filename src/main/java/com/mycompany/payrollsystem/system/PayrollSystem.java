@@ -17,7 +17,7 @@ public class PayrollSystem {
     double healthInsuranceFee = 40;
 
 
-    public Payslip generatePayslip(Staff staff, double salary) {
+    public Payslip generatePayslip(Staff staff, double salary) {    //should work only for FullTime
         double grossPay = salary / 12; //
         double tax = calculateTax(salary, grossPay);
         double netPay = grossPay - tax;

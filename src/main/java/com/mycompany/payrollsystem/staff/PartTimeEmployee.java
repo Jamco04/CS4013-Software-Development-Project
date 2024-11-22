@@ -42,6 +42,15 @@ public class PartTimeEmployee extends Staff {
         this.hoursWorked = hoursWorked;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "PartTimeEmployee{" +
+                "payRate=" + payRate +
+                ", hoursWorked=" + hoursWorked +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", scalePoint=" + scalePoint +
+                '}';
+    }
 }

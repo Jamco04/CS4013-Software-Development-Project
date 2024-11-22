@@ -34,5 +34,16 @@ public class FullTimeEmployee extends Staff {
         this.scalePoint = newScalePoint;
         this.salary = newSalary;
     }
-    
+
+    @Override
+    public String toString() {
+        return "FullTimeEmployee{" +
+                "category='" + category + '\'' +
+                ", salary=" + salary +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", scalePoint=" + scalePoint +
+                '}';
+    }
 }
