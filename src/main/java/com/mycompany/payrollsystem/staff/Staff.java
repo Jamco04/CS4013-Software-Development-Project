@@ -3,30 +3,38 @@ package com.mycompany.payrollsystem.staff;
 
 import com.mycompany.payrollsystem.system.PayLoader;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public abstract class Staff {
 
     // salary in FullTime, payRate in PartTime
     // category only in FullTime
 
-
-
+    private LocalDate startTime;
     protected String name;
     protected int id;
     protected String title;
     protected int scalePoint;
 
-    protected PayLoader loader = new PayLoader(); //for pay calculations
 
     public Staff(String name, int id, String title, int scalePoint){
+        this.startTime = LocalDate.now();
         this.name = name;
         this.id = id;
         this.title = title;
         this.scalePoint = scalePoint;
     }
 
-    public abstract void updateScalePoint(PayLoader loader); //different in subclasses
-    public abstract double getPay(PayLoader loader); //different in subclasses
+    public void resetStartTime() {
+        this.startTime = LocalDate.now();
+    }
 
+    public int getYearsAtCurrentScalePoint() {
+        return (int) ChronoUnit.YEARS.between(startTime, LocalDate.now());
+    }
+
+    public abstract boolean updateScalePoint(PayLoader loader); //different in subclasses
 
 
     public String getName() {

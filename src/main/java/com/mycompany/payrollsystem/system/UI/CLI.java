@@ -1,6 +1,7 @@
 package com.mycompany.payrollsystem.system.UI;
 
 import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.PayrollSystem;
 import com.mycompany.payrollsystem.system.StaffContainer;
 import com.mycompany.payrollsystem.system.user.Admin;
 import com.mycompany.payrollsystem.system.user.Employee;
@@ -12,8 +13,8 @@ import java.util.Scanner;
 public class CLI {
     private final Scanner in = new Scanner(System.in);
     private final PayLoader loader = new PayLoader();
-    //passwords are predefined
-    private static final String ADMIN_PASSWORD = "admin123";
+    private final PayrollSystem payrollSystem = new PayrollSystem();
+    private static final String ADMIN_PASSWORD = "admin123";    //passwords are predefined
     private static final String HR_PASSWORD = "hr123";
 
 
@@ -32,7 +33,7 @@ public class CLI {
                     break;
                 case "hr":
                     if (authenticateHR()) {
-                        runHRCLI(new HR(loader));
+                        runHRCLI(new HR());
                     }
                     break;
                 case "employee":
@@ -118,22 +119,18 @@ public class CLI {
     }
 
     private void runHRCLI(HR hrAccess) {
-        while (true) {
-            System.out.println("HR Menu: \n1) View Staff \n2) Promote Staff \n3) Remove Staff \n4) Logout");
+        boolean more = true;
+        while (more) {
+            System.out.println("HR Menu: \n1) Promote Staff \n2) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
-                    hrAccess.viewStaff();
-                    break;
-                case "2":
                     hrAccess.promoteStaff();
                     break;
-                case "3":
-                    hrAccess.removeStaff();
-                    break;
-                case "4":
+                case "2":
                     System.out.println("Logging out...");
-                    return;
+                    more = false;
+                    break;
                 default:
                     System.out.println("Invalid command. Please try again.");
             }
@@ -141,21 +138,49 @@ public class CLI {
     }
 
     private void runEmployeeCLI(Employee employeeAccess) {
-        while (true) {
-            System.out.println("Employee Menu: \n1) View Details \n2) Generate Payslip \n3) Logout");
+        boolean more = true;
+        while (more) {
+            System.out.println("Employee Menu: \n1) View Details \n2) View Payslips \n3) Submit Pay Claim \n4) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
                     employeeAccess.viewDetails();
                     break;
                 case "2":
-                    employeeAccess.generatePayslip();
+                    employeeAccess.viewPayslips();
                     break;
                 case "3":
+                    submitPayClaim(employeeAccess);
+                    break;
+                case "4":
                     System.out.println("Logging out...");
-                    return;
+                    more = false;
+                    break;
                 default:
                     System.out.println("Invalid command. Please try again.");
+            }
+        }
+    }
+
+    private void submitPayClaim(Employee employeeAccess) {
+        if (employeeAccess.getStaff() instanceof com.mycompany.payrollsystem.staff.PartTimeEmployee partTimeEmployee) {
+            System.out.println("Enter hours worked for pay claim:");
+            double hoursWorked = readDouble();
+            payrollSystem.addPayClaim(partTimeEmployee.getId(), hoursWorked);
+            partTimeEmployee.submitPayClaim(hoursWorked);
+        } else {
+            System.out.println("Only part-time employees can submit pay claims.");
+        }
+    }
+
+
+    // Helper method to safely read a double value
+    private double readDouble() {
+        while (true) {
+            try {
+                return Double.parseDouble(in.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
             }
         }
     }

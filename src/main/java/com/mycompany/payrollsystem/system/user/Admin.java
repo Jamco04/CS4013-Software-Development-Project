@@ -82,7 +82,7 @@ public class Admin {
             // Part-Time Employee
         } else {
             double hoursWorked = readDouble("Enter hours worked:");
-            PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint, hoursWorked);
+            PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint);
             if (StaffContainer.add(partTimeEmployee)) {
                 System.out.println("Part-time employee added successfully!");
             }

@@ -1,47 +1,37 @@
 package com.mycompany.payrollsystem.staff;
-import com.mycompany.payrollsystem.staff.Staff;
+
 import com.mycompany.payrollsystem.system.PayLoader;
-import com.mycompany.payrollsystem.system.StaffContainer;
+
 
 
 public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate
-    private double hoursWorked;
-    private double pay = getPay(loader);
 
 
 
-    public PartTimeEmployee(String name, int id, String title, int scalePoint, double hoursWorked){
+    public PartTimeEmployee(String name, int id, String title, int scalePoint){
         super(name, id, title, scalePoint);
-        this.hoursWorked= hoursWorked;
-        this.pay = getPay(loader);
     }
 
 
-    public double getPayRate(){
-        return payRate;
-    }
-
-    @Override
-    public double getPay(PayLoader loader) {    //sets payRate and return "salary"
+    public double getPay(PayLoader loader, double hoursWorked) {    //sets payRate and return "salary"
         payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
-        return this.payRate * this.hoursWorked; // Pay is based on hours worked
+        return  payRate * hoursWorked; // Pay is based on hours worked
+    }
+
+    public void submitPayClaim(double hours) {
+        System.out.printf("Pay claim submitted: %.2f hours for %s (ID: %d)%n", hours, name, id);
     }
 
     @Override
-    public void updateScalePoint(PayLoader loader) {
+    public boolean updateScalePoint(PayLoader loader) {    //IMPLEMENT THIS
+        return false;
     }
 
 
     @Override
     public String toString() {
-        return
-                "name: " + name + " | " +
-                "id: " + id + " | " +
-                "title: " + title + " | " +
-                "scalePoint: " + scalePoint + " | " +
-                "payRate: " + payRate + " | " +
-                "hoursWorked: " + hoursWorked + " | " +
-                "pay: " + pay;
+        return String.format("Part-Time Employee: name: %s | id: %d | title: %s | scalePoint: %d | payRate: %.2f",
+                name, id, title, scalePoint, payRate);
     }
 }

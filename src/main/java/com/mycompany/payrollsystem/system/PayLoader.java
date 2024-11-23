@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 public class PayLoader {
     // Data structure:
     //      Key: category, role, tier
     //      Value: pay
-    private static Map<String, Double> payGrades = new HashMap<>();
+    private static HashMap<String, Double> payGrades = new HashMap<>();
 
     public static void loadPay(String csvFile) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {

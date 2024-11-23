@@ -2,15 +2,16 @@ package com.mycompany.payrollsystem.system;
 
 import com.mycompany.payrollsystem.staff.Staff;
 
+
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
 //holds the staff (instead of a list I use hash map for easier look up)
 //  Key: ID
 //  Value: Staff
 
 public class StaffContainer {
-    private static Map<Integer, Staff> staffMap = new HashMap<>();  //static as it refers to the class
+    private static HashMap<Integer, Staff> staffMap = new HashMap<>();  //static as it refers to the class
 
     public static boolean add(Staff staff) {    //called in a constructor, boolean for testing purposes
         if (staffMap.containsKey(staff.getId())) {
@@ -39,5 +40,16 @@ public class StaffContainer {
     public static void removeStaffById(int id) {
         staffMap.remove(id);
     }
-}
 
+    public static void promoteFullTimeStaffInOctober() {
+        for (Staff staff : staffMap.values()) {
+            if (staff instanceof com.mycompany.payrollsystem.staff.FullTimeEmployee fullTimeEmployee) {
+                fullTimeEmployee.promoteInOctober();
+            }
+        }
+    }
+
+    public static Collection<Staff> getAllStaff() {
+        return staffMap.values();
+    }
+}

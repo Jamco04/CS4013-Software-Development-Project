@@ -1,14 +1,17 @@
 package com.mycompany.payrollsystem.system.user;
 
 import com.mycompany.payrollsystem.staff.Staff;
-import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.system.PayrollSystem;
 import com.mycompany.payrollsystem.system.Payslip;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
     private final Staff staff;
-    private final PayLoader loader = new PayLoader();
     private final PayrollSystem payrollSystem = new PayrollSystem();
+    private final List<Payslip> payslips = new ArrayList<>(); // Stores generated payslips for viewing history
 
     public Employee(Staff staff) {
         this.staff = staff;
@@ -19,16 +22,41 @@ public class Employee {
         System.out.println(staff);
     }
 
-    public void generatePayslip() {
-        System.out.println("Generating payslip...");
-        double salary = staff.getPay(loader);
-        if (salary == -1) {
-            System.out.println("Error: Unable to calculate salary. Please check staff details.");
+
+    public void viewPayslips() {
+        if (payslips.isEmpty()) {
+            System.out.println("No payslips available.");
             return;
         }
 
-        Payslip payslip = payrollSystem.generatePayslip(staff, salary);
-        payrollSystem.displayPayslip(payslip);
-        System.out.println("Payslip generated and saved.");
+        System.out.println("Your Payslips:");
+        for (Payslip payslip : payslips) {
+            System.out.printf("Pay Period: %s | Net Pay: %.2f\n", payslip.getPayPeriod(), payslip.getNetPay());
+        }
+    }
+
+
+    public void submitPayClaim(double hoursWorked) {
+        if (staff instanceof PartTimeEmployee partTimeEmployee) {
+            partTimeEmployee.submitPayClaim(hoursWorked);
+        } else {
+            System.out.println("Pay claims can only be submitted by part-time employees.");
+        }
+    }
+
+
+    public void generatePayslip() {
+        System.out.println("Generating payslip...");
+        Payslip payslip = payrollSystem.generatePayslipForEmployee(staff);
+        if (payslip != null) {
+            payslips.add(payslip);
+            System.out.println("Payslip generated successfully.");
+        } else {
+            System.out.println("Unable to generate payslip. Please ensure all details are correct.");
+        }
+    }
+
+    public Staff getStaff() {
+        return staff;
     }
 }
