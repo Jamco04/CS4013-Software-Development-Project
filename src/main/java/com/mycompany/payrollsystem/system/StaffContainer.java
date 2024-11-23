@@ -12,7 +12,7 @@ import java.util.Map;
 public class StaffContainer {
     private static Map<Integer, Staff> staffMap = new HashMap<>();  //static as it refers to the class
 
-    public static boolean add(Staff staff) {    //called in a construcotr
+    public static boolean add(Staff staff) {    //called in a constructor, boolean for testing purposes
         if (staffMap.containsKey(staff.getId())) {
             System.out.println("Error: Staff ID " + staff.getId() + " already exists.");
             return false;
@@ -34,6 +34,10 @@ public class StaffContainer {
         for (Staff staff : staffMap.values()) {
             System.out.println(staff.toString());
         }
+    }
+
+    public static void removeStaffById(int id) {
+        staffMap.remove(id);
     }
 }
 

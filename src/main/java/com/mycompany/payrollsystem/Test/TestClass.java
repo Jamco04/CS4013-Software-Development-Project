@@ -1,6 +1,5 @@
 package com.mycompany.payrollsystem.Test;
-import com.mycompany.payrollsystem.staff.FullTimeEmployee;
-import com.mycompany.payrollsystem.staff.PartTimeEmployee;
+
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.UI.CLI;
 

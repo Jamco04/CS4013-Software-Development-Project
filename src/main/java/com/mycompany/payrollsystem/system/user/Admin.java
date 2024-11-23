@@ -1,7 +1,8 @@
 package com.mycompany.payrollsystem.system.user;
 
-import com.mycompany.payrollsystem.staff.*;
-import com.mycompany.payrollsystem.system.PayLoader;
+
+import com.mycompany.payrollsystem.staff.FullTimeEmployee;
+import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
 import java.util.Scanner;
@@ -12,9 +13,9 @@ public class Admin {
 
 
     // Helper method to safely read integers
-    private int readInt(String prompt) {
+    private int readInt(String message) {
         while (true) {
-            System.out.println(prompt);
+            System.out.println(message);
             try {
                 return Integer.parseInt(in.nextLine().trim());
             } catch (NumberFormatException e) {
@@ -24,9 +25,9 @@ public class Admin {
     }
 
     // Helper method to safely read doubles
-    private double readDouble(String prompt) {
+    private double readDouble(String message) {
         while (true) {
-            System.out.println(prompt);
+            System.out.println(message);
             try {
                 return Double.parseDouble(in.nextLine().trim());
             } catch (NumberFormatException e) {
@@ -36,12 +37,13 @@ public class Admin {
     }
 
     // Helper method to read strings
-    private String readString(String prompt) {
-        System.out.println(prompt);
-        return in.nextLine().trim();
+    private String readString(String message) {
+        System.out.println(message);
+        return in.nextLine().trim();    //trim removes spaces before or after the actual string
     }
 
     public void addStaff() {
+
         // Staff Type
         int type = readInt("Enter staff type: (1) full-time (2) part-time:");
         while (type != 1 && type != 2) {
