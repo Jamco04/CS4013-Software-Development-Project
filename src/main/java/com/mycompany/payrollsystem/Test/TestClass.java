@@ -12,16 +12,6 @@ public class TestClass {
             // Load pay from the CSV
             PayLoader.loadPay("src/database/Salaries.csv");   //this object now contains hashmap for key-salary
 
-            // Create a FullTimeEmployee
-            FullTimeEmployee employee1 = new FullTimeEmployee("Adam Urban", 23381752, "Academic", "Professor",2);
-
-            System.out.println(employee1);
-
-            // Create a PartTimeEmployee
-            PartTimeEmployee employee2 = new PartTimeEmployee("James Connolly", 2336892, "LabTutor", 2, 5);
-
-            System.out.println(employee2);
-
             CLI cli = new CLI();
             cli.run();
 

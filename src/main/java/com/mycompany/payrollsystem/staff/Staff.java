@@ -17,12 +17,11 @@ public abstract class Staff {
     protected int scalePoint;
 
     public Staff(String name, int id, String title, int scalePoint){
-        StaffContainer.add(this);
         this.name = name;
         this.id = id;
         this.title = title;
         this.scalePoint = scalePoint;
-        System.out.println("Staff created correctly");
+
     }
 
     public abstract void updateScalePoint(PayLoader loader); //different in subclasses

@@ -12,9 +12,15 @@ import java.util.Map;
 public class StaffContainer {
     private static Map<Integer, Staff> staffMap = new HashMap<>();  //static as it refers to the class
 
-    public static void add(Staff staff) {  //called in a constructor when creating a staff member
+    public static boolean add(Staff staff) {    //called in a construcotr
+        if (staffMap.containsKey(staff.getId())) {
+            System.out.println("Error: Staff ID " + staff.getId() + " already exists.");
+            return false;
+        }
         staffMap.put(staff.getId(), staff);
+        return true;
     }
+
 
     public static Staff getStaffById(int id) {
         return staffMap.get(id);

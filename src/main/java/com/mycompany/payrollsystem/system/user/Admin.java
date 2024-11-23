@@ -1,4 +1,5 @@
 package com.mycompany.payrollsystem.system.user;
+
 import com.mycompany.payrollsystem.staff.*;
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
@@ -6,72 +7,91 @@ import com.mycompany.payrollsystem.system.StaffContainer;
 import java.util.Scanner;
 
 public class Admin {
-
-    private PayLoader payLoader;
     private final Scanner in = new Scanner(System.in);
 
-    public Admin(PayLoader loader) {
-        this.payLoader = loader;
+
+
+    // Helper method to safely read integers
+    private int readInt(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            try {
+                return Integer.parseInt(in.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
     }
 
+    // Helper method to safely read doubles
+    private double readDouble(String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            try {
+                return Double.parseDouble(in.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
+    }
 
-    // ADD STUFF
+    // Helper method to read strings
+    private String readString(String prompt) {
+        System.out.println(prompt);
+        return in.nextLine().trim();
+    }
 
     public void addStaff() {
-
-        //TAKE INPUTS NEEDED TO CREATE A STUFF MEMBER
-
-        System.out.println("Enter staff type: (1) full-time (2) part-time:");
-        int type = Integer.parseInt(in.nextLine());
-        while (!(type == 1 || type == 2)){
-            System.out.println("Invalid staff type. Please try again.");
-            System.out.println("Enter staff type: (1) full-time (2) part-time:");
-            type = Integer.parseInt(in.nextLine());
+        // Staff Type
+        int type = readInt("Enter staff type: (1) full-time (2) part-time:");
+        while (type != 1 && type != 2) {
+            System.out.println("Invalid staff type. Please enter 1 for full-time or 2 for part-time.");
+            type = readInt("Enter staff type: (1) full-time (2) part-time:");
         }
 
-        System.out.println("Enter staff name:");
-        String name = in.nextLine();
+        // Name
+        String name = readString("Enter staff name:");
 
-        System.out.println("Enter staff ID:");
-        int id = Integer.parseInt(in.nextLine());
+        // Unique ID
+        int id;
+        while (true) {
+            id = readInt("Enter staff ID:");
+            if (StaffContainer.getStaffById(id) != null) {
+                System.out.println("Staff ID already exists. Please enter a unique ID.");
+            } else {
+                break;
+            }
+        }
 
-        System.out.println("Enter staff title:");
-        String title = in.nextLine();
+        // Title
+        String title = readString("Enter staff title:");
 
-        System.out.println("Enter scale point:");
-        int scalePoint = Integer.parseInt(in.nextLine());   //should implement to check if scalepoint is valid
+        // Scale Point
+        int scalePoint = readInt("Enter scale point:");
 
-        if (type == 1) {    //full-time
-            System.out.println("Enter category:");
-            String category = in.nextLine();
-
+        // Full-Time Employee
+        if (type == 1) {
+            String category = readString("Enter category:");
             FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint);
-            StaffContainer.add(fullTimeEmployee);
+            if (StaffContainer.add(fullTimeEmployee)) {
+                System.out.println("Full-time employee added successfully!");
+            }
 
-            System.out.println("Full-time employee added successfully!");
-
-        } else if (type == 2) { //part-time
-            System.out.println("Enter hours worked:");
-            double hoursWorked = in.nextInt();
-
+            // Part-Time Employee
+        } else {
+            double hoursWorked = readDouble("Enter hours worked:");
             PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint, hoursWorked);
-            StaffContainer.add(partTimeEmployee);
-
-            System.out.println("Part-time employee added successfully!");
-
+            if (StaffContainer.add(partTimeEmployee)) {
+                System.out.println("Part-time employee added successfully!");
+            }
         }
     }
-
-    // VIEW STUFF
 
     public void viewStaff() {
         if (StaffContainer.isEmpty()) {
             System.out.println("No staff members found.");
-            return;
+        } else {
+            StaffContainer.listAllStaff();
         }
-
-        StaffContainer.listAllStaff();
     }
-
-
 }

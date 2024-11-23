@@ -29,8 +29,8 @@ public class PayLoader {
 
     public double getPay(String category, String role, String tier) {   // returns value
         String key = generateKey(category, role, tier);
-        System.out.println("Their key is: " + key);    //testing purposes
-        return payGrades.getOrDefault(key, -1.0);   //-1 for an error (maybe change to exception)
+        // System.out.println("Their key is: " + key);    //testing purposes
+        return payGrades.getOrDefault(key, -1.0);   //-1 for testing purposes
     }
 
     private static String generateKey(String category, String role, String tier) { // returns key

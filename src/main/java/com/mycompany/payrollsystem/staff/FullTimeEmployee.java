@@ -1,6 +1,7 @@
 package com.mycompany.payrollsystem.staff;
 
 import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.StaffContainer;
 
 public class FullTimeEmployee extends Staff {
 

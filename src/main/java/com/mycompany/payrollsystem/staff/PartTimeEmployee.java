@@ -1,12 +1,13 @@
 package com.mycompany.payrollsystem.staff;
 import com.mycompany.payrollsystem.staff.Staff;
 import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.StaffContainer;
 
 
 public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate
     private double hoursWorked;
-    private double pay;
+    private double pay = getPay(loader);
 
 
 
