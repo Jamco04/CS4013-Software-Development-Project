@@ -28,7 +28,7 @@ public class PayrollSystem {
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
 
-        if (today.isBefore(secondFriday)) { //for testing change to isBefore if you want to test the other outcome
+        if (today.isAfter(secondFriday)) { //for testing change to isBefore if you want to test the other outcome
             System.out.println("Pay claims can no longer be submitted for this month.");
             return false;
         }
@@ -61,6 +61,9 @@ public class PayrollSystem {
             }
         }
 
+        // Clear pay claims after generating payslips
+        clearPayClaims();
+
         return payslips;
     }
 
@@ -85,6 +88,12 @@ public class PayrollSystem {
         String payPeriod = LocalDate.now().getMonth().toString() + " " + LocalDate.now().getYear();
 
         return new Payslip(staff.getName(), staff.getId(), grossPay, tax, netPay, payPeriod);
+    }
+
+    // Clear all pay claims for the current month
+    private void clearPayClaims() {
+        payClaims.clear();
+        System.out.println("All pay claims have been cleared.");
     }
 
     //private boolean isPayday() {
