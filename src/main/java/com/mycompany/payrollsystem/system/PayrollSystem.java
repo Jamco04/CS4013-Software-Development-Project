@@ -27,10 +27,17 @@ public class PayrollSystem {
         LocalDate today = LocalDate.now();
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
+
         if (today.isBefore(secondFriday)) { //for testing change to isBefore if you want to test the other outcome
             System.out.println("Pay claims can no longer be submitted for this month.");
             return false;
         }
+
+        if (payClaims.containsKey(staffId)) {
+            System.out.println("A pay claim for this month has already been submitted by employee ID: " + staffId);
+            return false;
+        }
+
 
         payClaims.put(staffId, hoursWorked);
         System.out.println("Pay claim submitted for staff ID " + staffId + " with " + hoursWorked + " hours worked.");
