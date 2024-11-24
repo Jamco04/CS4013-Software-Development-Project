@@ -24,17 +24,6 @@ public class Admin {
         }
     }
 
-    // Helper method to safely read doubles
-    private double readDouble(String message) {
-        while (true) {
-            System.out.println(message);
-            try {
-                return Double.parseDouble(in.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
-        }
-    }
 
     // Helper method to read strings
     private String readString(String message) {
@@ -71,17 +60,20 @@ public class Admin {
         // Scale Point
         int scalePoint = readInt("Enter scale point:");
 
+        // Password
+        String password = readString("Set a password for this employee:");
+
         // Full-Time Employee
         if (type == 1) {
             String category = readString("Enter category:");
-            FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint);
+            FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint, password);
             if (StaffContainer.add(fullTimeEmployee)) {
                 System.out.println("Full-time employee added successfully!");
             }
 
             // Part-Time Employee
         } else {
-            PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint);
+            PartTimeEmployee partTimeEmployee = new PartTimeEmployee(name, id, title, scalePoint, password);
             if (StaffContainer.add(partTimeEmployee)) {
                 System.out.println("Part-time employee added successfully!");
             }

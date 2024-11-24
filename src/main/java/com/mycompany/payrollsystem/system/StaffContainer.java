@@ -37,17 +37,7 @@ public class StaffContainer {
         }
     }
 
-    public static void removeStaffById(int id) {
-        staffMap.remove(id);
-    }
 
-    public static void promoteFullTimeStaffInOctober() {
-        for (Staff staff : staffMap.values()) {
-            if (staff instanceof com.mycompany.payrollsystem.staff.FullTimeEmployee fullTimeEmployee) {
-                fullTimeEmployee.promoteInOctober();
-            }
-        }
-    }
 
     public static Collection<Staff> getAllStaff() {
         return staffMap.values();

@@ -19,14 +19,16 @@ public abstract class Staff {
     protected String title;
     protected int scalePoint;
     private final ArrayList<Payslip> payslips = new ArrayList<>();
+    private String password;
 
 
-    public Staff(String name, int id, String title, int scalePoint){
+    public Staff(String name, int id, String title, int scalePoint, String password){
         this.startTime = LocalDate.now();
         this.name = name;
         this.id = id;
         this.title = title;
         this.scalePoint = scalePoint;
+        this.password = password;
     }
 
     public void addPayslip(Payslip payslip) {
@@ -46,16 +48,12 @@ public abstract class Staff {
         }
     }
 
-    public void resetStartTime() {
-        this.startTime = LocalDate.now();
-    }
-
-    public int getYearsAtCurrentScalePoint() {
-        return (int) ChronoUnit.YEARS.between(startTime, LocalDate.now());
-    }
 
     public abstract boolean updateScalePoint(PayLoader loader); //different in subclasses
 
+    public boolean authenticate(String inputPassword) {
+        return password.equals(inputPassword);
+    }
 
     public String getName() {
         return name;

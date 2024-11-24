@@ -106,9 +106,6 @@ public class PayrollSystem {
         System.out.println("All pay claims have been cleared.");
     }
 
-    //private boolean isPayday() {
-      //  return LocalDate.now().getDayOfMonth() == 25;
-    //}
 
     private void savePayslipsToCSV(ArrayList<Payslip> payslips) {
         String fileName = "Payslips_" + LocalDate.now() + ".csv";

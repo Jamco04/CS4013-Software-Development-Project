@@ -5,57 +5,89 @@ import com.mycompany.payrollsystem.staff.Staff;
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class HR {
     private final PayLoader loader = new PayLoader();
     private final Scanner in = new Scanner(System.in);
 
-    public void promoteStaff() {
+    public void annualPromotion() { //promotion every October for all FullTime Employees
+        LocalDate today = LocalDate.now();
+
+        // Ensure it's October
+        if (today.getMonthValue() == 10) {  //AFTER TESTING CHANGE TO !=
+            System.out.println("Annual promotions can only be conducted in October.");
+            return;
+        }
+
+        System.out.println("Performing annual promotions for full-time employees...");
+
+        for (Staff staff : StaffContainer.getAllStaff()) {
+            if (staff instanceof FullTimeEmployee) {
+                FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) staff;
+                if (fullTimeEmployee.updateScalePoint(loader)) {
+                    System.out.println("Promoted: " + fullTimeEmployee.getName() + " to scale point " + fullTimeEmployee.getScalePoint());
+                } else {
+                    System.out.println(fullTimeEmployee.getName() + " is already at the top of their scale and cannot be promoted further.");
+                }
+            }
+        }
+    }
+
+    public void promoteToNextSalaryScale() {
         System.out.println("Enter the ID of the full-time employee to promote:");
         int id = readInt();
         Staff staff = StaffContainer.getStaffById(id);
 
-        // Check if the staff exists and is a FullTimeEmployee
-        if (staff == null || !(staff instanceof FullTimeEmployee fullTimeEmployee)) {
+        if (staff == null || !(staff instanceof FullTimeEmployee)) {
             System.out.println("Staff not found or not eligible for promotion.");
             return;
         }
 
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) staff;
 
+        // Check if employee is at the top of the scale
+        if (!fullTimeEmployee.isAtTopScalePoint(loader)) {
+            System.out.println(fullTimeEmployee.getName() + " is not at the top of their current scale point. Promote them annually first.");
+            return;
+        }
+
+        System.out.println("Promotion Details:");
         System.out.println("Current Scale Point: " + fullTimeEmployee.getScalePoint());
+        System.out.println("Current Salary Scale: " + fullTimeEmployee.getTitle());
 
-        // Ask for confirmation
-        System.out.println("Do you accept this promotion? (yes/no)");
-        String confirmation = in.nextLine().trim().toLowerCase();
+        System.out.println("Enter the employee's password for confirmation:");
+        String inputPassword = in.nextLine().trim();
 
-        if (confirmation.equals("yes")) {
-            // Try to update the scale point or category
-            if (!fullTimeEmployee.updateScalePoint(loader)) {
-                System.out.println("Employee already at the top of their salary scale. Assign new title or category if applicable.");
+        // Authenticate the employee
+        if (!fullTimeEmployee.authenticate(inputPassword)) {
+            System.out.println("Invalid password. Promotion cannot be authorized.");
+            return;
+        }
 
-                // If they are at the top of their salary scale, check years at the current scale point
-                int yearsAtScalePoint = fullTimeEmployee.getYearsAtCurrentScalePoint();
-                System.out.println("Years at current scale point: " + yearsAtScalePoint);
+        System.out.println("Enter new salary scale for the employee:");
+        String newTitle = in.nextLine().trim();
 
-                // If eligible for promotion to a new category, ask for new category and scale point
-                if (yearsAtScalePoint >= 3) { // Assuming 3 years for promotion eligibility
-                    System.out.println("Enter new category for promotion:");
-                    String newCategory = in.nextLine().trim();
 
-                    System.out.println("Enter new scale point for the new category:");
-                    int newScalePoint = readInt();
 
-                    fullTimeEmployee.promoteToNewCategory(newCategory, newScalePoint);
-                    System.out.println("Promotion to new category and scale point completed successfully.");
-                } else {
-                    System.out.println("Employee is not eligible for category promotion yet. Requires more time at the current scale point.");
-                }
-            } else {
-                System.out.println("Promotion applied successfully to the next scale point.");
-            }
+        // Calculate new scale point based on time spent at the top
+        int newScalePoint = calculateNewScalePoint(fullTimeEmployee);
+
+        fullTimeEmployee.promoteToNewTitle(newTitle, newScalePoint);
+        System.out.println("Successfully promoted " + fullTimeEmployee.getName() + " to title " + newTitle + " at scale point " + newScalePoint);
+    }
+
+    private int calculateNewScalePoint(FullTimeEmployee employee) {
+        long yearsAtTop = employee.getYearsAtTop();
+
+        // Logic to determine scale point based on years spent at the top
+        if (yearsAtTop >= 5) {
+            return 5; // Example: If more than 5 years, go to scale point 5
+        } else if (yearsAtTop >= 3) {
+            return 3; // If 3–4 years, go to scale point 3
         } else {
-            System.out.println("Promotion declined by the employee.");
+            return 1; // Otherwise, start at scale point 1
         }
     }
 

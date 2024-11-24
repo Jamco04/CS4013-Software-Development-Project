@@ -99,7 +99,7 @@ public class CLI {
     private void runAdminCLI(Admin adminAccess) {
         boolean more = true;
         while (more) {
-            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips ( \n4) Logout");
+            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips \n4) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
@@ -124,13 +124,16 @@ public class CLI {
     private void runHRCLI(HR hrAccess) {
         boolean more = true;
         while (more) {
-            System.out.println("HR Menu: \n1) Promote Staff \n2) Logout");
+            System.out.println("HR Menu: \n1) Perform Annual Promotion \n2) Promote to New Salary Scale \n3) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
-                    hrAccess.promoteStaff();
+                    hrAccess.annualPromotion();
                     break;
                 case "2":
+                    hrAccess.promoteToNextSalaryScale();
+                    break;
+                case "3":
                     System.out.println("Logging out...");
                     more = false;
                     break;
