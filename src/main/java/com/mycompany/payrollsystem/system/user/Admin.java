@@ -3,7 +3,11 @@ package com.mycompany.payrollsystem.system.user;
 
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
+import com.mycompany.payrollsystem.staff.Staff;
+import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.util.Scanner;
 
@@ -85,6 +89,30 @@ public class Admin {
             System.out.println("No staff members found.");
         } else {
             StaffContainer.listAllStaff();
+            saveAllStaffToCSV();
+        }
+    }
+
+    private void saveAllStaffToCSV() {
+        String fileName = "employees.csv";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            // Write the CSV header
+            writer.write("Employee,Name,ID,Category,Title\n");
+
+            for (Staff staff : StaffContainer.getAllStaff()) {
+                String category = (staff instanceof FullTimeEmployee) ? ((FullTimeEmployee) staff).getCategory() : "";
+                String employee = (staff instanceof FullTimeEmployee) ? "Full-Time" : "Part-Time";
+
+                writer.write(String.format("%s,%s,%d,%s,%s\n",
+                        employee,
+                        staff.getName(),
+                        staff.getId(),
+                        category,
+                        staff.getTitle()));
+            }
+            System.out.println("Staff details have been saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error saving staff details to CSV: " + e.getMessage());
         }
     }
 }

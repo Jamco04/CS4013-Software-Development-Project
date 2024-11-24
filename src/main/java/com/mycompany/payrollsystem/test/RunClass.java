@@ -1,11 +1,11 @@
-package com.mycompany.payrollsystem.Test;
+package com.mycompany.payrollsystem.test;
 
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.UI.CLI;
 
 import java.io.IOException;
 
-public class TestClass {
+public class RunClass {
     public static void main(String[] args){
         try {
             // Load pay from the CSV
