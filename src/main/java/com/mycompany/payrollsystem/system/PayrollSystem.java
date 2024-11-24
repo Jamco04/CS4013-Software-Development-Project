@@ -5,6 +5,7 @@ package com.mycompany.payrollsystem.system;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
+import com.mycompany.payrollsystem.system.user.Employee;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -28,7 +29,7 @@ public class PayrollSystem {
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
 
-        if (today.isAfter(secondFriday)) { //for testing change to isBefore if you want to test the other outcome
+        if (today.isBefore(secondFriday)) { //AFTER TESTING CHANGE TO isAfter
             System.out.println("Pay claims can no longer be submitted for this month.");
             return false;
         }
@@ -53,12 +54,12 @@ public class PayrollSystem {
             return payslips;
         }
 
-        if (today.getDayOfMonth() != 25) {
+        if (today.getDayOfMonth() == 25) {  //AFTER TESTING CHANGE TO !=25
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
         }
 
-        for (Staff staff : StaffContainer.getAllStaff()) {
+        for (Staff staff : StaffContainer.getAllStaff()) {  //for every staff member
             Payslip payslip = generatePayslipForEmployee(staff);
             if (payslip != null) {
                 payslips.add(payslip);
@@ -92,7 +93,11 @@ public class PayrollSystem {
         double netPay = grossPay - tax;
         String payPeriod = LocalDate.now().getMonth().toString() + " " + LocalDate.now().getYear();
 
-        return new Payslip(staff.getName(), staff.getId(), grossPay, tax, netPay, payPeriod);
+        Payslip payslip = new Payslip(staff.getName(), staff.getId(), grossPay, tax, netPay, payPeriod);
+
+        staff.addPayslip(payslip);
+
+        return payslip;
     }
 
     // Clear all pay claims for the current month
