@@ -36,14 +36,6 @@ public class Employee {
     }
 
 
-    public void submitPayClaim(double hoursWorked) {
-        if (staff instanceof PartTimeEmployee partTimeEmployee) {
-            partTimeEmployee.submitPayClaim(hoursWorked);
-        } else {
-            System.out.println("Pay claims can only be submitted by part-time employees.");
-        }
-    }
-
 
     public void generatePayslip() {
         System.out.println("Generating payslip...");

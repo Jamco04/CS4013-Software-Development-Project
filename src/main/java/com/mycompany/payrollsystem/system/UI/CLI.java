@@ -167,7 +167,6 @@ public class CLI {
             System.out.println("Enter hours worked for pay claim:");
             double hoursWorked = readDouble();
             payrollSystem.addPayClaim(partTimeEmployee.getId(), hoursWorked);
-            partTimeEmployee.submitPayClaim(hoursWorked);
         } else {
             System.out.println("Only part-time employees can submit pay claims.");
         }

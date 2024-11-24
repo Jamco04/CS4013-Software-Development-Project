@@ -27,7 +27,7 @@ public class PayrollSystem {
         LocalDate today = LocalDate.now();
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
-        if (today.isAfter(secondFriday)) {
+        if (today.isBefore(secondFriday)) { //for testing change to isBefore if you want to test the other outcome
             System.out.println("Pay claims can no longer be submitted for this month.");
             return false;
         }
@@ -68,7 +68,7 @@ public class PayrollSystem {
                 return null;
             }
             double hoursWorked = payClaims.get(partTimeEmployee.getId());
-            grossPay = partTimeEmployee.getPay(new PayLoader(), hoursWorked);
+            grossPay = partTimeEmployee.getPay(hoursWorked);
         } else {
             return null;
         }
