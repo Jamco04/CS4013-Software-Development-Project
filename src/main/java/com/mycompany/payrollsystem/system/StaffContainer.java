@@ -42,4 +42,9 @@ public class StaffContainer {
     public static Collection<Staff> getAllStaff() {
         return staffMap.values();
     }
+
+    public static void clearAllStaff() {
+        staffMap.clear();
+    }
+
 }

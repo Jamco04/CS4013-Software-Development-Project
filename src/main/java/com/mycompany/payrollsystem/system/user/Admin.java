@@ -72,7 +72,7 @@ public class Admin {
             String category = readString("Enter category:");
             FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint, password);
             if (StaffContainer.add(fullTimeEmployee)) {
-                System.out.println("Full-time employee added successfully!");
+                System.out.println("Full-time employee added successfully!");   //otherwise, java does garbage collection automatically
             }
 
             // Part-Time Employee

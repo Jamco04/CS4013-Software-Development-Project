@@ -1,6 +1,5 @@
-package com.mycompany.payrollsystem.test;
+package com.mycompany.payrollsystem.staff;
 
-import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.system.PayLoader;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -39,7 +38,20 @@ class FullTimeEmployeeTest {
     void testSalaryCalculation() {
         FullTimeEmployee employee = new FullTimeEmployee("Adam", 1, "Academic", "Professor", 3, "123");
 
-        double expectedSalary = 115107;
+        double expectedSalary = loader.getPay("Academic", "Professor", "3");
         assertEquals(expectedSalary, employee.getSalary(loader));
     }
+
+    @Test
+    void testPromotionAtTop() {
+        FullTimeEmployee employee = new FullTimeEmployee("Adam", 1, "Academic", "Professor", 6, "password");
+
+        boolean promoted = employee.updateScalePoint(loader);
+        assertFalse(promoted, "Employee at top scale should not be promotable to a higher scale point");
+
+        employee.promoteToNewTitle("Full Professor", loader);
+        assertEquals("Full Professor", employee.getTitle(), "Title should be updated to 'Full Professor'");
+        assertEquals(1, employee.getScalePoint(), "Scale point should reset to 1");
+    }
+
 }

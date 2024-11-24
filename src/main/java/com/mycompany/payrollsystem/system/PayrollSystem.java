@@ -101,7 +101,7 @@ public class PayrollSystem {
     }
 
     // Clear all pay claims for the current month
-    private void clearPayClaims() {
+    void clearPayClaims() {
         payClaims.clear();
         System.out.println("All pay claims have been cleared.");
     }

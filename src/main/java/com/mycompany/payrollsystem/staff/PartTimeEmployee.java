@@ -17,6 +17,9 @@ public class PartTimeEmployee extends Staff {
 
 
     public double getPay(double hoursWorked) {    //sets payRate and return "salary"
+        if (hoursWorked < 0) {
+            throw new IllegalArgumentException("Hours worked cannot be negative.");
+        }
         payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
         return  payRate * hoursWorked; // Pay is based on hours worked
     }

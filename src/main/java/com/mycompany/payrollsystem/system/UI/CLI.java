@@ -22,6 +22,7 @@ public class CLI {
         while (true) {
             System.out.println("Welcome to the Payroll System!");
             System.out.println("Please enter your role (Admin/HR/Employee) or type 'quit' to exit:");
+            if (!in.hasNextLine()) break; // Avoid exceptions if input ends (I wrote this for JUnit (Automatic input))
             String role = in.nextLine().trim().toLowerCase();
 
 
@@ -170,8 +171,18 @@ public class CLI {
 
     private void submitPayClaim(Employee employeeAccess) {
         if (employeeAccess.getStaff() instanceof com.mycompany.payrollsystem.staff.PartTimeEmployee partTimeEmployee) {
-            System.out.println("Enter hours worked for pay claim:");
-            double hoursWorked = readDouble();
+            double hoursWorked;
+            while (true){
+                System.out.println("Enter hours worked for pay claim:");
+                hoursWorked = readDouble();
+                if (hoursWorked < 0){   //discovered through JUnit testing
+                    System.out.println("Hours worked cannot be negative.");
+                }
+                else{
+                    break;
+                }
+
+            }
             payrollSystem.addPayClaim(partTimeEmployee.getId(), hoursWorked);
         } else {
             System.out.println("Only part-time employees can submit pay claims.");
