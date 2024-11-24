@@ -15,39 +15,53 @@ public class FullTimeEmployee extends Staff {
         super(name, id, title, scalePoint, password);
         this.category = category;
         this.salary = getSalary(new PayLoader());
-        this.topScaleStartTime = LocalDateTime.now();
+        checkTopScale(new PayLoader());
     }
 
+    public void checkTopScale(PayLoader loader){
+        int maxScalePoints = loader.getMaxScalePoints(title);
+        if (scalePoint == maxScalePoints){
+            if (topScaleStartTime == null) {
+                topScaleStartTime = LocalDateTime.now();
+            }
+        }
+        else {
+            topScaleStartTime = null;
+        }
+    }
 
     public boolean updateScalePoint(PayLoader loader) {
-        double newSalary = loader.getPay(category, title, String.valueOf(scalePoint + 1));
-        if (newSalary != -1) { // Check if next scale point exists
+        int maxScalePoints = loader.getMaxScalePoints(title);
+        if (scalePoint < maxScalePoints) {
+            checkTopScale(loader);
             scalePoint++;
-            salary = newSalary;
+            salary = getSalary(loader);
             return true;
         } else {
-            if (topScaleStartTime == null) {
-                topScaleStartTime = LocalDateTime.now(); // Mark start time at top scale
-            }
             return false; // Already at top
         }
     }
 
-    public boolean isAtTopScalePoint(PayLoader loader) {
-        double newSalary = loader.getPay(category, title, String.valueOf(scalePoint + 1));
-        return newSalary == -1; // No higher scale point
-    }
 
     public long getYearsAtTop() {
         if (topScaleStartTime == null) return 0;
         return ChronoUnit.YEARS.between(topScaleStartTime, LocalDateTime.now());
     }
 
-    public void promoteToNewTitle(String newTitle, int newScalePoint) {
+    public void promoteToNewTitle(String newTitle, PayLoader loader) {
         title = newTitle;
-        scalePoint = newScalePoint;
-        salary = getSalary(new PayLoader());
+        int yearsAtTop = (int) getYearsAtTop();
         topScaleStartTime = null; // Reset top scale timer
+        int maxScalePoints = loader.getMaxScalePoints(newTitle);
+
+
+        scalePoint = Math.min(yearsAtTop, loader.getMaxScalePoints(newTitle));   //new scalepoint will be years at top (limit is the maximum scale point)
+        scalePoint = scalePoint == 0 ? 1 : scalePoint; //years could be 0, so make skillpoint 1
+
+        salary = getSalary(loader);
+        checkTopScale(loader);
+
+
     }
 
     public double getSalary(PayLoader loader) {

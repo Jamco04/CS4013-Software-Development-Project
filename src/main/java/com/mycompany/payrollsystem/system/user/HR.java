@@ -47,12 +47,6 @@ public class HR {
 
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) staff;
 
-        // Check if employee is at the top of the scale
-        if (!fullTimeEmployee.isAtTopScalePoint(loader)) {
-            System.out.println(fullTimeEmployee.getName() + " is not at the top of their current scale point. Promote them annually first.");
-            return;
-        }
-
         System.out.println("Promotion Details:");
         System.out.println("Current Scale Point: " + fullTimeEmployee.getScalePoint());
         System.out.println("Current Salary Scale: " + fullTimeEmployee.getTitle());
@@ -66,7 +60,7 @@ public class HR {
             return;
         }
 
-        System.out.println("Enter new salary scale for the employee:");
+        System.out.println("Enter new salary scale (title) for the employee:");
         String newTitle = in.nextLine().trim();
 
 
@@ -74,7 +68,7 @@ public class HR {
         // Calculate new scale point based on time spent at the top
         int newScalePoint = calculateNewScalePoint(fullTimeEmployee);
 
-        fullTimeEmployee.promoteToNewTitle(newTitle, newScalePoint);
+        fullTimeEmployee.promoteToNewTitle(newTitle, loader);
         System.out.println("Successfully promoted " + fullTimeEmployee.getName() + " to title " + newTitle + " at scale point " + newScalePoint);
     }
 
