@@ -48,6 +48,11 @@ public class PayrollSystem {
         ArrayList<Payslip> payslips = new ArrayList<>();
         LocalDate today = LocalDate.now();
 
+        if (StaffContainer.isEmpty()) {
+            System.out.println("No employees found. Payslips generation skipped.");
+            return payslips;
+        }
+
         if (today.getDayOfMonth() != 25) {
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
@@ -63,7 +68,7 @@ public class PayrollSystem {
 
         // Clear pay claims after generating payslips
         clearPayClaims();
-
+        savePayslipsToCSV(payslips);
         return payslips;
     }
 
@@ -99,6 +104,30 @@ public class PayrollSystem {
     //private boolean isPayday() {
       //  return LocalDate.now().getDayOfMonth() == 25;
     //}
+
+    private void savePayslipsToCSV(ArrayList<Payslip> payslips) {
+        String fileName = "Payslips_" + LocalDate.now() + ".csv";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            // Write the CSV header
+            writer.write("Name,ID,Pay Period,Gross Pay,Tax,Net Pay\n");
+
+            // Write each payslip as a row
+            for (Payslip payslip : payslips) {
+                writer.write(String.format("%s,%d,%s,%.2f,%.2f,%.2f\n",
+                        payslip.getName(),
+                        payslip.getId(),
+                        payslip.getPayPeriod(),
+                        payslip.getGrossPay(),
+                        payslip.getTax(),
+                        payslip.getNetPay()));
+            }
+
+            System.out.println("Payslips saved to file: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error saving payslips to CSV: " + e.getMessage());
+        }
+    }
+
 
     private double calculateTax(double annualSalary) {
         double tax = 0;

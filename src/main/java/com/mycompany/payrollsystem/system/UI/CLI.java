@@ -99,7 +99,7 @@ public class CLI {
     private void runAdminCLI(Admin adminAccess) {
         boolean more = true;
         while (more) {
-            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Logout");
+            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips ( \n4) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
@@ -109,6 +109,9 @@ public class CLI {
                     adminAccess.viewStaff();
                     break;
                 case "3":
+                    payrollSystem.generateMonthlyPayslips();
+                    break;
+                case "4":
                     System.out.println("Logging out...");
                     more = false;
                     break;
