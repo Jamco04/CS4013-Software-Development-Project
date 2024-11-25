@@ -1,7 +1,7 @@
 package com.mycompany.payrollsystem.test;
 
 import com.mycompany.payrollsystem.system.PayLoader;
-import com.mycompany.payrollsystem.system.UI.CLI;
+import com.mycompany.payrollsystem.system.ui.CLI;
 
 import java.io.IOException;
 

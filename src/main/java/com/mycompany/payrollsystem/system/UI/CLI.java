@@ -1,4 +1,4 @@
-package com.mycompany.payrollsystem.system.UI;
+package com.mycompany.payrollsystem.system.ui;
 
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.PayrollSystem;
@@ -16,7 +16,6 @@ public class CLI {
     private final PayrollSystem payrollSystem = new PayrollSystem();
     private static final String ADMIN_PASSWORD = "admin123";    //passwords are predefined
     private static final String HR_PASSWORD = "hr123";
-
 
     public void run() {
         while (true) {

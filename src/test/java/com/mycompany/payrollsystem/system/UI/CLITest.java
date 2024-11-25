@@ -1,4 +1,4 @@
-package com.mycompany.payrollsystem.system.UI;
+package com.mycompany.payrollsystem.system.ui;
 
 import org.junit.jupiter.api.Test;
 
