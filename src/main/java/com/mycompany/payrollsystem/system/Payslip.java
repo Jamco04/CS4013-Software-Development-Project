@@ -1,7 +1,5 @@
 package com.mycompany.payrollsystem.system;
 
-import com.mycompany.payrollsystem.staff.Staff;
-
 public class Payslip{
 
     private String name;

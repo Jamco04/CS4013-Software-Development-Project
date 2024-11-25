@@ -124,7 +124,7 @@ public class CLI {
     private void runHRCLI(HR hrAccess) {
         boolean more = true;
         while (more) {
-            System.out.println("HR Menu: \n1) Perform Annual Promotion \n2) Promote to New Salary Scale \n3) Logout");
+            System.out.println("HR Menu: \n1) Perform Annual Promotion (Full-Time) \n2) Promote to New Salary Scale (Full-Time) \n3) Promote to Next Scale Point (Part-Time) \n4) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
@@ -134,6 +134,9 @@ public class CLI {
                     hrAccess.promoteToNextSalaryScale();
                     break;
                 case "3":
+                    //hrAccess.promoteToNextScalePoint();
+                    break;
+                case "4":
                     System.out.println("Logging out...");
                     more = false;
                     break;

@@ -5,7 +5,6 @@ package com.mycompany.payrollsystem.system;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
-import com.mycompany.payrollsystem.system.user.Employee;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
