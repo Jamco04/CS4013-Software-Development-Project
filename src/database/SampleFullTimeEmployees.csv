@@ -1,0 +1,71 @@
+Name,Id,Title,Tier,Password,Category
+Emily Carter,A101,Full Professor,3,password123,Academic
+James Donovan,A102,Associate Professor A,6,password123,Academic
+Sophie Martinez,A103,Teaching Assistant,2,password123,Academic
+Michael Green,A104,Assistant Professor,9,password123,Academic
+Olivia Harrison,AD201,Senior Administrative Officer III,4,password123,Administrative
+Ethan Rodriguez,A105,Associate Professor B,5,password123,Academic
+Isabella Parker,A106,Professor,2,password123,Academic
+Noah Sullivan,A107,Full Professor,1,password123,Academic
+Mia Bennett,A108,Assistant Professor,3,password123,Academic
+Liam Murphy,AD202,Senior Administrative Officer III,2,password123,Administrative
+Olivia Harrison,AD301,Senior Administrative Officer III,5,password123,Administrative
+Ethan Turner,AD302,Senior Administrative Officer II,3,password123,Administrative
+Sophia Carter,AD303,Senior Administrative Officer I,7,password123,Administrative
+Michael Green,AD304,Senior Executive Administrator,9,password123,Administrative
+Noah Sullivan,AD305,Executive Administrator,6,password123,Administrative
+Isabella Bennett,AD306,Senior Administrator,4,password123,Administrative
+Ava Thompson,AD101,Senior Administrator,9,password123,Administrative
+Liam Johnson,AD102,Administrator,1,password123,Administrative
+Emma Clark,EPS201,EPS Portfolio Manager,1,password123,Education Procurement Services
+Noah Davis,EPS202,EPS Category Manager,1,password123,Education Procurement Services
+Sophia Miller,EPS203,EPS Category Specialist Higher,1,password123,Education Procurement Services
+Lucas Brown,EPS204,EPS Category Specialist,1,password123,Education Procurement Services
+Ella Martinez,LIB001,Sub Librarian,1,password123,Library
+Ava Johnson,LIB101,Sub Librarian,2,password123,Library
+Noah Smith,LIB102,Assistant Librarian II,1,password123,Library
+Sophia Clark,LIB103,Assistant Librarian I,1,password123,Library
+Liam Brown,LIB104,Senior Library Assistant,1,password123,Library
+Emily Smith,LIB201,Library Assistant,1,password123,Library
+Noah Johnson,LIB202,Library Attendant,1,password123,Library
+Sophia Davis,IT301,Analyst Programmer III,1,password123,Information Technology
+Liam Brown,IT302,Analyst Programmer II,1,password123,Information Technology
+Ava Clark,IT303,Analyst Programmer I,1,password123,Information Technology
+Lucas Martinez,IT304,Senior Computer Operator,1,password123,Information Technology
+Mason Lee,IT401,Senior Computer Operator,2,password123,Information Technology
+Ella Walker,IT402,Computer Operator,1,password123,Information Technology
+Oliver Harris,IT403,Print Operator II,1,password123,Information Technology
+Amelia Adams,IT404,Print Operator I,1,password123,Information Technology
+Henry Garcia,IT405,Computer Lab Attendant,1,password123,Information Technology
+Isabella Moore,IT406,Temporary Computer Assistant,1,password123,Information Technology
+Ava Brown,IT407,Temporary Computer Assistant,7,password123,Information Technology
+Liam Johnson,TE501,Chief Technical Officer,1,password123,Technical
+Sophia Martinez,TE502,Technical Officer,1,password123,Technical
+Noah Clark,TE503,Senior Technical Officer,11,password123,Technical
+Emily Davis,TE504,Senior Lab Attendant,1,password123,Technical
+James Wilson,TE505,Laboratory Attendant,1,password123,Technical
+Olivia Thomas,SS601,Senior Porter/Attendant,1,password123,Service Staff
+William Anderson,SS602,Porter/Attendant,1,password123,Service Staff
+Isabella Morris,SS603,Porter/Attendant,8,password123,Service Staff
+Ethan Lewis,SS604,Grounds Supervisor,5,password123,Service Staff
+Charlotte Taylor,SS605,Groundsworkperson,7,password123,Service Staff
+Mason Hall,SS606,Senior Aide,4,password123,Service Staff
+Olivia Green,SS607,Senior Aide,13,password123,Service Staff
+Liam Clark,SS608,Groundsworkperson Machine Attendant,6,password123,Service Staff
+Sophia Martinez,SS609,Service Staff Shift,9,password123,Service Staff
+James Walker,SS610,Plant Maintenance Aide,2,password123,Service Staff
+Amelia Brown,SS611,Grounds Foreperson,3,password123,Service Staff
+Isabella Davis,SS612,Grounds Foreperson,6,password123,Service Staff
+Ethan Taylor,TE101,Teaching Fellow,5,password123,Teachers
+Mia Wilson,TE102,University Teacher,7,password123,Teachers
+Alexander Moore,TE103,Associate Teacher,10,password123,Teachers
+Charlotte White,CL201,Therapies Regional Supervisors Regional Placement Facilitator,4,password123,Clinical
+Benjamin Hall,CL202,Clinical Tutor,3,password123,Clinical
+Sophia Miller,CL301,Clinical Tutor,6,password123,Clinical
+Liam Harris,CL302,Clinical Fellow,4,password123,Clinical
+Olivia Clark,UL101,Assistant Senior Instructor,1,password123,ULAC
+Noah Walker,UL102,Lead Instructor,1,password123,ULAC
+Emma Turner,UL103,Multi Activity Instructor Grade I,2,password123,ULAC
+James Martinez,UL104,Multi Activity Instructor Grade II,1,password123,ULAC
+Ava Thompson,UL105,Assistant Instructor,2,password123,ULAC
+Lucas Anderson,UL106,COOP STUDENTS,2,password123,ULAC

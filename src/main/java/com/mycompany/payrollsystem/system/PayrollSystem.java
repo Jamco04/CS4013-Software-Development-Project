@@ -53,7 +53,7 @@ public class PayrollSystem {
             return payslips;
         }
 
-        if (today.getDayOfMonth() == 25) {  //AFTER TESTING CHANGE TO !=25
+        if (today.getDayOfMonth() != 25) {  //AFTER TESTING CHANGE TO !=25
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
         }

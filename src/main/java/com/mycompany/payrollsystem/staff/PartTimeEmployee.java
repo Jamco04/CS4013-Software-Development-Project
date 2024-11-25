@@ -26,7 +26,13 @@ public class PartTimeEmployee extends Staff {
 
 
     @Override
-    public boolean updateScalePoint(PayLoader loader) {    //IMPLEMENT THIS
+    public boolean updateScalePoint(PayLoader loader) {
+        int maxScalePoints = loader.getMaxScalePoints(title);
+        if (scalePoint < maxScalePoints) {
+            scalePoint++;
+            payRate = loader.getPay("", title, String.valueOf(scalePoint));
+            return true;
+        }
         return false;
     }
 
