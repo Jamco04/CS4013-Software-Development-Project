@@ -9,7 +9,7 @@ public class FullTimeEmployee extends Staff {
 
     private String category;    //only FullTimeEmployee has category (Director/Academic/...)
     private double salary;      //only FullTimeEmployee has annual salary
-    private LocalDateTime topScaleStartTime; //checks time that employee has been at the top scalePoint
+    private LocalDateTime topScaleStartTime; //Checks time that employee has been at the top scalePoint
 
     public FullTimeEmployee(String name, int id, String category, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
