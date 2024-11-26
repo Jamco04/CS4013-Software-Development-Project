@@ -1,6 +1,7 @@
 package com.mycompany.payrollsystem.system.user;
 
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
+import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
 import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
@@ -92,6 +93,23 @@ public class HR {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
+        }
+    }
+
+    public void promoteToNextScalePoint() {
+        System.out.println("Enter the ID of the part-time employee to promote:");
+        int id = Integer.parseInt(in.nextLine().trim());
+        Staff staff = StaffContainer.getStaffById(id);
+
+        if (staff instanceof PartTimeEmployee) {
+            PartTimeEmployee partTimeEmployee = (PartTimeEmployee) staff;
+            if (partTimeEmployee.updateScalePoint(loader)) {
+                System.out.println("Successfully promoted " + partTimeEmployee.getName() + " to scale point " + partTimeEmployee.getScalePoint());
+            } else {
+                System.out.println("Cannot promote " + partTimeEmployee.getName() + " as they are already at the top of their scale.");
+            }
+        } else {
+            System.out.println("Staff not found or not a part-time employee.");
         }
     }
 }

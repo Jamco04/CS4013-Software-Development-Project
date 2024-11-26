@@ -19,7 +19,7 @@ class CLITest {
 
     @Test
     void testHRLoginAndPromotion() {
-        String input = "hr\nhr123\n1\n3\n";
+        String input = "hr\nhr123\n1\n4\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         CLI cli = new CLI();

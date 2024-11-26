@@ -12,7 +12,7 @@ public class PartTimeEmployee extends Staff {
 
     public PartTimeEmployee(String name, int id, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
-    payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
+        payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
     }
 
 
@@ -26,7 +26,13 @@ public class PartTimeEmployee extends Staff {
 
 
     @Override
-    public boolean updateScalePoint(PayLoader loader) {    //IMPLEMENT THIS
+    public boolean updateScalePoint(PayLoader loader) {
+        int maxScalePoints = loader.getMaxScalePoints(title);
+        if (scalePoint < maxScalePoints) {
+            scalePoint++;
+            payRate = loader.getPay("", title, String.valueOf(scalePoint));
+            return true;
+        }
         return false;
     }
 

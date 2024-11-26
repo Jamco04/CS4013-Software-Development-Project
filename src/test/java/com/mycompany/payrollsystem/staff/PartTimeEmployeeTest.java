@@ -41,8 +41,7 @@ class PartTimeEmployeeTest {
     @Test
     void testUpdateScalePoint() {
         PartTimeEmployee employee = new PartTimeEmployee("Dave", 4, "LabTutor", 1, "password");
-
-        assertFalse(employee.updateScalePoint(loader), "Part-time employees should not have scale points updated");
+        assertTrue(employee.updateScalePoint(loader), "Part-time employee scale point will be updated.");
     }
 
     @Test
