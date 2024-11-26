@@ -34,9 +34,8 @@ public class PayLoader {
         return titleScalePoints.getOrDefault(title, 0);
     }
 
-    public double getPay(String category, String role, String tier) {   // returns value
-        String key = generateKey(category, role, tier);
-        // System.out.println("Their key is: " + key);    //testing purposes
+    public double getPay(String category, String title, String tier) {   // returns value
+        String key = generateKey(category, title, tier);
         return payGrades.getOrDefault(key, -1.0);   //-1 for testing purposes
     }
 

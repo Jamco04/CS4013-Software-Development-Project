@@ -12,7 +12,7 @@ public class PartTimeEmployee extends Staff {
 
     public PartTimeEmployee(String name, int id, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
-    payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
+        payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
     }
 
 

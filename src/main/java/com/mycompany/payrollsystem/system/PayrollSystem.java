@@ -24,6 +24,8 @@ public class PayrollSystem {
     private static final double HEALTH_INSURANCE_FEE = 40;
 
     public boolean addPayClaim(int staffId, double hoursWorked) {
+
+
         LocalDate today = LocalDate.now();
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
@@ -38,6 +40,16 @@ public class PayrollSystem {
             return false;
         }
 
+        Staff staff = StaffContainer.getStaffById(staffId);
+        if (staff == null) {
+            System.out.println("Employee not found with ID: " + staffId);
+            return false;
+        }
+
+        if (!(staff instanceof PartTimeEmployee)) {
+            System.out.println("Pay claims can only be submitted for part-time employees.");
+            return false;
+        }
 
         payClaims.put(staffId, hoursWorked);
         System.out.println("Pay claim submitted for staff ID " + staffId + " with " + hoursWorked + " hours worked.");
@@ -53,7 +65,7 @@ public class PayrollSystem {
             return payslips;
         }
 
-        if (today.getDayOfMonth() != 25) {  //AFTER TESTING CHANGE TO !=25
+        if (today.getDayOfMonth() == 25) {  //AFTER TESTING CHANGE TO !=25
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
         }
@@ -163,6 +175,14 @@ public class PayrollSystem {
             return 0.04;
         } else {
             return 0.08;
+        }
+    }
+
+    public void generateAndPrintPayslips() {
+        ArrayList<Payslip> payslips = generateMonthlyPayslips();
+        for (Payslip payslip : payslips) {
+            System.out.println("Payslip for: " + payslip.getName());
+            System.out.println("ID: " + payslip.getId() + ", Gross Pay: " + payslip.getGrossPay() + ", Net Pay: " + payslip.getNetPay());
         }
     }
 }
