@@ -8,6 +8,7 @@ import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -30,13 +31,14 @@ public class Admin {
     }
 
 
-    // Helper method to read strings
+
     private String readString(String message) {
         System.out.println(message);
         return in.nextLine().trim();    //trim removes spaces before or after the actual string
     }
 
     public void addStaff() {
+        //placeholder arraylist, possibly a better way to do this by reading from csv files
         List<String> validTitles = Arrays.asList(
                 "Full Professor","Professor","Associate Professor A","Associate Professor B",
                 "Assistant Professor","Teaching Assistant","Senior Administrative Officer III",
@@ -54,6 +56,7 @@ public class Admin {
                 "Lead Instructor","Multi Activity Instructor (Grade I)","Multi Activity Instructor (Grade II)","Multi Activity Instructor (Grade III)",
                 "Assistant Instructor","CO-OP STUDENTS");
 
+        //do whatever solution we use for the above datastructure here
         List<String> validCategories = Arrays.asList();
 
         // Staff Type
@@ -77,14 +80,33 @@ public class Admin {
             }
         }
 
-        // Title
+        //title validation
         String title = "";
         while (true) {
             title = readString("Enter staff title:").trim();
+
             if (validTitles.contains(title)) {
+                System.out.println("Title accepted: " + title);
                 break;
             } else {
-                System.out.println("Invalid title. Please choose from the following: " + String.join(", ", validTitles));
+                System.out.println("Invalid title.");
+
+                //suggest titles part of code
+                if (!title.isEmpty()) {
+                    char firstLetter = Character.toUpperCase(title.charAt(0));
+                    List<String> suggestions = new ArrayList<>();
+
+                    for (int i = 0; i < validTitles.size(); i++) {
+                        String validTitle = validTitles.get(i);
+                        if (Character.toUpperCase(validTitle.charAt(0)) == firstLetter) {
+                            suggestions.add(validTitle);
+                        }
+                    }
+
+                    if (!suggestions.isEmpty()) {
+                        System.out.println("Did you mean one of these? " + String.join(", ", suggestions));
+                    }
+                }
             }
         }
 
