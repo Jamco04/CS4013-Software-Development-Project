@@ -8,17 +8,11 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-// WHEN RUNNING, YOU HAVE TO HAVE THE JAVAFX LIBRARY AND IN THE CONFIGURATION ADD VM OPTIONS(EDIT PATH):
-// --module-path /Users/adamurban/documents/javafx-sdk-23.0.1/lib --add-modules javafx.controls,javafx.fxml
-//com.mycompany.payrollsystem.system.ui.GUI
-
-
-
 public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Login.fxml")));
+        Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml")); // Ensure correct resource path
         Scene scene = new Scene(root);
         primaryStage.setTitle("Payroll System Login");
         primaryStage.setScene(scene);

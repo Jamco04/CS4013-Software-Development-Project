@@ -21,9 +21,7 @@ public class CLI {
         while (true) {
             System.out.println("Welcome to the Payroll System!");
             System.out.println("Please enter your role (Admin/HR/Employee) or type 'quit' to exit:");
-
             if (!in.hasNextLine()) break; // Avoid exceptions if input ends (I wrote this for JUnit (Automatic input))
-
             String role = in.nextLine().trim().toLowerCase();
 
 
@@ -136,7 +134,7 @@ public class CLI {
                     hrAccess.promoteToNextSalaryScale();
                     break;
                 case "3":
-                    hrAccess.promoteToNextScalePoint();
+                    //hrAccess.promoteToNextScalePoint();
                     break;
                 case "4":
                     System.out.println("Logging out...");
