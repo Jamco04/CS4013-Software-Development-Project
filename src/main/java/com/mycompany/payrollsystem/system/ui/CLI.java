@@ -52,15 +52,26 @@ public class CLI {
 
     // Admin authentication
     private boolean authenticateAdmin() {
-        System.out.println("Enter admin password:");
-        String password = in.nextLine().trim();
-        if (ADMIN_PASSWORD.equals(password)) {
-            System.out.println("Admin login successful!");
-            return true;
-        } else {
-            System.out.println("Invalid password. Access denied.");
-            return false;
+        final int MaxAttempts = 3;
+        int attempts = 0;
+
+        while (attempts < MaxAttempts) {
+            System.out.println("Enter admin password:");
+            String password = in.nextLine().trim();
+
+            if (ADMIN_PASSWORD.equals(password)) {
+                System.out.println("Admin login successful!");
+                return true;
+            } else {
+                attempts++;
+                if (attempts < MaxAttempts) {
+                    System.out.println("Invalid password. Try again.");
+                } else {
+                    System.out.println("Invalid password. Access denied. Too many attempts.");
+                }
+            }
         }
+        return false;
     }
 
     // HR authentication
