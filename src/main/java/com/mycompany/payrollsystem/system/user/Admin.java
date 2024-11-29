@@ -56,8 +56,7 @@ public class Admin {
                 "Lead Instructor","Multi Activity Instructor (Grade I)","Multi Activity Instructor (Grade II)","Multi Activity Instructor (Grade III)",
                 "Assistant Instructor","CO-OP STUDENTS");
 
-        //do whatever solution we use for the above datastructure here
-        List<String> validCategories = Arrays.asList();
+
 
         // Staff Type
         int type = readInt("Enter staff type: (1) full-time (2) part-time:");
