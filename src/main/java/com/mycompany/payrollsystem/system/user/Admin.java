@@ -112,6 +112,12 @@ public class Admin {
 
         // Scale Point
         int scalePoint = readInt("Enter scale point:");
+        PayLoader loader = new PayLoader();  //bycInstantiating the class we can use its method for retrieving the  max scalepoint
+        int maxScale = loader.getMaxScalePoints(title);
+        while (scalePoint<0 || scalePoint>maxScale) {
+            System.out.println("Invalid Scalepoint. The maximum Scale Point for this title is "+maxScale);
+            scalePoint = readInt("Enter scale point:");
+        }
 
         // Password
         String password = readString("Set a password for this employee:");
