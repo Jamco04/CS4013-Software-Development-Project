@@ -73,11 +73,16 @@ public class Admin {
         int id;
         while (true) {
             id = readInt("Enter staff ID:");
+
+            if (Integer.toString(id).length() != 5){
+                System.out.println("Staff ID Must be 5 digits.");
+            }
             if (StaffContainer.getStaffById(id) != null) {
                 System.out.println("Staff ID already exists. Please enter a unique ID.");
             } else {
                 break;
             }
+
         }
 
         //title validation
@@ -123,7 +128,10 @@ public class Admin {
 
         // Password
         String password = readString("Set a password for this employee:");
-
+        while (password.length()<7) {
+            System.out.println("Password must have at least 8 characters");
+            password = readString("Set a password for this employee:");
+        }
         // Full-Time Employee
         if (type == 1) {
 
