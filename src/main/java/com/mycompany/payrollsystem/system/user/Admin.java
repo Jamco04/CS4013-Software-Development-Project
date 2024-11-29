@@ -112,7 +112,9 @@ public class Admin {
 
         // Scale Point
         int scalePoint = readInt("Enter scale point:");
-        PayLoader loader = new PayLoader();  //bycInstantiating the class we can use its method for retrieving the  max scalepoint
+        PayLoader loader = new PayLoader();  //by Instantiating the class we can use its method for retrieving the  max scalepoint
+        // we alo need the getCatagory method so Instantiating this works out well
+
         int maxScale = loader.getMaxScalePoints(title);
         while (scalePoint<0 || scalePoint>maxScale) {
             System.out.println("Invalid Scalepoint. The maximum Scale Point for this title is "+maxScale);
@@ -124,7 +126,8 @@ public class Admin {
 
         // Full-Time Employee
         if (type == 1) {
-            String category = readString("Enter category:");
+
+            String category = PayLoader.getCategoryFromTitle(title);
             FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint, password);
             if (StaffContainer.add(fullTimeEmployee)) {
                 System.out.println("Full-time employee added successfully!");   //otherwise, java does garbage collection automatically
