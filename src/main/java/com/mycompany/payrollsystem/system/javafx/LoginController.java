@@ -1,10 +1,12 @@
 package com.mycompany.payrollsystem.system.javafx;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -20,8 +22,6 @@ public class LoginController {
     @FXML
     private Button loginButton;
 
-    @FXML
-    private AnchorPane anchorPane; // Reference to parent container
 
     @FXML
     public void initialize() {
@@ -47,12 +47,27 @@ public class LoginController {
         try {
             if (authenticate(role, username, password)) {
                 showAlert("Login Success", "Welcome!", Alert.AlertType.INFORMATION);
-                // Logic for navigating to the respective menu based on role
+
+                if ("Admin".equalsIgnoreCase(role)) {
+                    navigateToAdminMenu();
+                }
             } else {
                 showAlert("Login Failed", "Invalid credentials or role.", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             showAlert("System Error", "An error occurred: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void navigateToAdminMenu() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminMenu.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) loginButton.getScene().getWindow(); // Get current stage
+            stage.setScene(new Scene(root));
+            stage.setTitle("Admin Menu");
+        } catch (Exception e) {
+            showAlert("Error", "Unable to load Admin Menu: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 

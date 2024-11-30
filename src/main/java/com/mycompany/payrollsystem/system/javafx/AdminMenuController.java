@@ -1,63 +1,78 @@
 package com.mycompany.payrollsystem.system.javafx;
 
+import com.mycompany.payrollsystem.system.PayrollSystem;
+import com.mycompany.payrollsystem.system.StaffContainer;
 import com.mycompany.payrollsystem.system.user.Admin;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class AdminMenuController {
 
-    private final Admin admin = new Admin(); // Use the Admin class for functionalities
-
-    @FXML
-    private Button addStaffButton;
-
-    @FXML
-    private Button viewStaffButton;
-
-    @FXML
-    private Button generatePayslipsButton;
-
-    @FXML
-    private Button logoutButton;
+    private final Admin admin = new Admin();
+    private final PayrollSystem payrollSystem = new PayrollSystem();
 
     @FXML
     private void handleAddStaff() {
-        // Call the add staff functionality
-        admin.addStaff();
-        showAlert("Success", "Staff added successfully!", AlertType.INFORMATION);
+        try {
+            admin.addStaff();
+            showAlert("Add Staff", "Staff member added successfully.", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            showAlert("Error", "Failed to add staff: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void handleViewStaff() {
-        // Call the view staff functionality
-        admin.viewStaff();
-        showAlert("Success", "Staff details have been displayed.", AlertType.INFORMATION);
+        if (StaffContainer.isEmpty()) {
+            showAlert("View Staff", "No staff members available.", Alert.AlertType.INFORMATION);
+        } else {
+            try {
+                admin.viewStaff(); // Displays staff in the console and saves to a CSV
+                showAlert("View Staff", "Staff details displayed and saved to CSV.", Alert.AlertType.INFORMATION);
+            } catch (Exception e) {
+                showAlert("Error", "Failed to view staff: " + e.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
     }
 
     @FXML
     private void handleGeneratePayslips() {
         try {
-            // Generate payslips functionality
-            admin.generatePayslips();
-            showAlert("Success", "Payslips generated successfully!", AlertType.INFORMATION);
+            payrollSystem.generateMonthlyPayslips(); // Generate payslips for all staff
+            showAlert("Generate Payslips", "Payslips generated and saved successfully.", Alert.AlertType.INFORMATION);
         } catch (Exception e) {
-            showAlert("Error", "Failed to generate payslips: " + e.getMessage(), AlertType.ERROR);
+            showAlert("Error", "Failed to generate payslips: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void handleLogout() {
-        // Close the current admin menu and return to the login screen
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.close();
+        try {
+            // Navigate back to the login screen
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) Stage.getWindows()
+                    .stream()
+                    .filter(window -> window instanceof Stage && window.isShowing())
+                    .findFirst()
+                    .orElse(null);
+            if (stage != null) {
+                stage.setScene(new Scene(root));
+                stage.setTitle("Login");
+            }
+        } catch (IOException e) {
+            showAlert("Error", "Failed to load login screen: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
-    private void showAlert(String title, String content, AlertType type) {
+
+    private void showAlert(String title, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);

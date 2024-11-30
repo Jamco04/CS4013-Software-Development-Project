@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Text?>
 
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Button?>
