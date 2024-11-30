@@ -69,8 +69,8 @@ public class Admin {
         String title = "";
         while (true) {
             title = readString("Enter staff title:").trim();
-            title = title.substring(0, 1).toUpperCase() + title.substring(1);
-            if (Titles.getTitles().contains(title.toLowerCase())) {
+            title = title.substring(0, 1).toUpperCase() + title.substring(1).toLowerCase();
+            if (Titles.getTitles().stream().map(String::toLowerCase).toList().contains(title.toLowerCase())) {
                 System.out.println("Title accepted: " + title);
                 break;
             } else {
