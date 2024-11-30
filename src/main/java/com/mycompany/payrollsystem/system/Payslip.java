@@ -12,12 +12,12 @@ public class Payslip{
 
     public Payslip(String name, int id, double grossPay, double tax, double netPay, String payPeriod) {
 
-    this.name = name;
-    this.id = id;
-    this.grossPay = grossPay;
-    this.tax = tax;
-    this.netPay = netPay;
-    this.payPeriod = payPeriod;
+        this.name = name;
+        this.id = id;
+        this.grossPay = grossPay;
+        this.tax = tax;
+        this.netPay = netPay;
+        this.payPeriod = payPeriod;
     }
 
     public String getName() {

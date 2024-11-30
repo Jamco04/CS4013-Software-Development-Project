@@ -1,18 +1,14 @@
 package com.mycompany.payrollsystem.system.ui;
 
-import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.PayrollSystem;
 import com.mycompany.payrollsystem.system.StaffContainer;
 import com.mycompany.payrollsystem.system.user.Admin;
 import com.mycompany.payrollsystem.system.user.Employee;
 import com.mycompany.payrollsystem.system.user.HR;
-
-
 import java.util.Scanner;
 
 public class CLI {
     private final Scanner in = new Scanner(System.in);
-    private final PayLoader loader = new PayLoader();
     private final PayrollSystem payrollSystem = new PayrollSystem();
     private static final String ADMIN_PASSWORD = "admin123";    //passwords are predefined
     private static final String HR_PASSWORD = "hr123";
@@ -21,7 +17,9 @@ public class CLI {
         while (true) {
             System.out.println("Welcome to the Payroll System!");
             System.out.println("Please enter your role (Admin/HR/Employee) or type 'quit' to exit:");
+
             if (!in.hasNextLine()) break; // Avoid exceptions if input ends (I wrote this for JUnit (Automatic input))
+
             String role = in.nextLine().trim().toLowerCase();
 
 
@@ -52,32 +50,54 @@ public class CLI {
 
     // Admin authentication
     private boolean authenticateAdmin() {
-        System.out.println("Enter admin password:");
-        String password = in.nextLine().trim();
-        if (ADMIN_PASSWORD.equals(password)) {
-            System.out.println("Admin login successful!");
-            return true;
-        } else {
-            System.out.println("Invalid password. Access denied.");
-            return false;
+        int attemptsRemaining = 3;
+
+        while (true) {
+            System.out.println("Enter admin password:");
+            String password = in.nextLine().trim();
+
+            if (ADMIN_PASSWORD.equals(password)) {
+                System.out.println("Admin login successful!");
+                return true;
+
+            } else {
+                attemptsRemaining--;
+                if (attemptsRemaining > 0) {
+                    System.out.println("Invalid password. You have " + attemptsRemaining + " attempt/s remaining.");
+                } else {
+                    System.out.println("Invalid password. Access denied. Too many attempts.");
+                    return false;
+                }
+            }
         }
     }
 
     // HR authentication
     private boolean authenticateHR() {
-        System.out.println("Enter HR password:");
-        String password = in.nextLine().trim();
-        if (HR_PASSWORD.equals(password)) {
-            System.out.println("HR login successful!");
-            return true;
-        } else {
-            System.out.println("Invalid password. Access denied.");
-            return false;
+        int attemptsRemaining = 3;
+        while (true) {
+            System.out.println("Enter HR password:");
+            String password = in.nextLine().trim();
+
+            if (HR_PASSWORD.equals(password)) {
+                System.out.println("HR login successful!");
+                return true;
+            } else {
+                attemptsRemaining--;
+                if (attemptsRemaining > 0) {
+                    System.out.println("Invalid password. You have " + attemptsRemaining + " attempt/s remaining.");
+                } else {
+                    System.out.println("Invalid password. Access denied. Too many attempts.");
+                    return false;
+                }
+            }
         }
     }
 
     // Employee authentication
     private void authenticateAndRunEmployee() {
+
+
         System.out.println("Enter your ID:");
         int id;
         try {
@@ -90,9 +110,31 @@ public class CLI {
         var staff = StaffContainer.getStaffById(id);
         if (staff == null) {
             System.out.println("Employee not found. Please contact the admin.");
-        } else {
-            System.out.println("Employee login successful!");
-            runEmployeeCLI(new Employee(staff));
+            return;
+        }
+
+
+        System.out.println("Enter your password:");
+
+        int attemptsRemaining = 3;
+
+        while (true) {
+            String inputPassword = in.nextLine().trim();
+
+            if (staff.getPassword().equals(inputPassword)) {
+                System.out.println("Password accepted. Welcome!");
+                runEmployeeCLI(new Employee(staff));
+                return;
+
+            } else {
+                attemptsRemaining--;
+                if (attemptsRemaining > 0) {
+                    System.out.println("Invalid password. You have " + attemptsRemaining + " attempt/s remaining.");
+                } else {
+                    System.out.println("Too many failed attempts. You are now logged out.");
+                    return;
+                }
+            }
         }
     }
 
@@ -134,7 +176,7 @@ public class CLI {
                     hrAccess.promoteToNextSalaryScale();
                     break;
                 case "3":
-                    //hrAccess.promoteToNextScalePoint();
+                    hrAccess.promoteToNextScalePoint();
                     break;
                 case "4":
                     System.out.println("Logging out...");
