@@ -18,7 +18,7 @@ public class Admin {
 
 
     // Helper method to safely read integers
-    private int readInt(String message) {
+    public int readInt(String message) {
         while (true) {
             System.out.println(message);
             try {
@@ -69,8 +69,8 @@ public class Admin {
         String title = "";
         while (true) {
             title = readString("Enter staff title:").trim();
-
-            if (Titles.getTitles().contains(title)) {
+            title = title.substring(0, 1).toUpperCase() + title.substring(1);
+            if (Titles.getTitles().contains(title.toLowerCase())) {
                 System.out.println("Title accepted: " + title);
                 break;
             } else {

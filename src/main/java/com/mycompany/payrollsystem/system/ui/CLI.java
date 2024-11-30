@@ -10,6 +10,8 @@ import com.mycompany.payrollsystem.system.user.HR;
 
 import java.util.Scanner;
 
+import static com.mycompany.payrollsystem.system.StaffLoader.addRandomStaffFromDatabase;
+
 public class CLI {
     private final Scanner in = new Scanner(System.in);
     private final PayLoader loader = new PayLoader();
@@ -138,7 +140,7 @@ public class CLI {
     private void runAdminCLI(Admin adminAccess) {
         boolean more = true;
         while (more) {
-            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips \n4) Logout");
+            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips \n4) Logout \n5) Load sample employees");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
@@ -153,6 +155,12 @@ public class CLI {
                 case "4":
                     System.out.println("Logging out...");
                     more = false;
+                    break;
+
+                case "5":
+                    Admin admin = new Admin();// instantiating again
+                    int numberOfEmployees = admin.readInt("Enter the number of random employees to generate:");
+                    addRandomStaffFromDatabase("src/database/SampleEmployees.csv",numberOfEmployees);
                     break;
                 default:
                     System.out.println("Invalid command. Please try again.");
