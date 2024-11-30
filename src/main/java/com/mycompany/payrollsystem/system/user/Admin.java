@@ -57,7 +57,7 @@ public class Admin {
             if (Integer.toString(id).length() != 5){
                 System.out.println("Staff ID Must be 5 digits.");
             }
-            if (StaffContainer.getStaffById(id) != null) {
+            else if (StaffContainer.getStaffById(id) != null) {
                 System.out.println("Staff ID already exists. Please enter a unique ID.");
             } else {
                 break;
