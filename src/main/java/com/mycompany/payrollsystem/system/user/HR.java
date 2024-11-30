@@ -3,6 +3,7 @@ package com.mycompany.payrollsystem.system.user;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
+import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
 import java.time.LocalDate;
@@ -60,7 +61,11 @@ public class HR {
         }
 
         System.out.println("Enter new salary scale (title) for the employee:");
-        String newTitle = in.nextLine().trim();
+        String newTitle = "";
+        while (!(ScaleLoader.validTitle(newTitle))){
+            System.out.println("Not Valid. Enter new salary scale (title) for the employee:");
+            newTitle = in.nextLine().trim();
+        }
 
 
 

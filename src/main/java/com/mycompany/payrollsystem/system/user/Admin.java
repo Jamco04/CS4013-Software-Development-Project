@@ -4,6 +4,7 @@ package com.mycompany.payrollsystem.system.user;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
+import com.mycompany.payrollsystem.system.PayrollSystem;
 import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 import java.io.FileWriter;
@@ -143,4 +144,10 @@ public class Admin {
             System.out.println("Error saving staff details to CSV: " + e.getMessage());
         }
     }
+
+    public void generatePayslips() {    //For GUI
+        PayrollSystem payrollSystem = new PayrollSystem();
+        payrollSystem.generateMonthlyPayslips();
+    }
+
 }

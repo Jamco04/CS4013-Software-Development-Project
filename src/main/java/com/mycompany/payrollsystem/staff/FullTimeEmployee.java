@@ -60,7 +60,6 @@ public class FullTimeEmployee extends Staff {
         salary = getSalary();
         checkTopScale();
 
-
     }
 
     public double getSalary() {
