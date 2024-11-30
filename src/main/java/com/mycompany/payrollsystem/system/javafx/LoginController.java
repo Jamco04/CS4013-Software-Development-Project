@@ -39,7 +39,6 @@ public class LoginController {
         try {
             if (authenticate(role, username, password)) {
                 showAlert("Login Success", "Welcome " + username + "!", AlertType.INFORMATION);
-                // Proceed to next part of your application
             } else {
                 showAlert("Login Failed", "Invalid credentials or role", AlertType.ERROR);
             }
@@ -49,8 +48,10 @@ public class LoginController {
     }
 
     private boolean authenticate(String role, String username, String password) {
-        // Implement your authentication logic here
-        return true; // Placeholder
+        if (role.equals("Admin") && username.equals("admin") && password.equals("admin123")) {
+            return true;
+        }
+        return false;
     }
 
     private void showAlert(String title, String content, AlertType type) {

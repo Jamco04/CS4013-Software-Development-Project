@@ -7,6 +7,7 @@ import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class HR {
@@ -61,8 +62,8 @@ public class HR {
             return;
         }
 
-        System.out.println("Enter new salary scale (title) for the employee:");
-        String newTitle = in.nextLine().trim();
+        String currentTitle = fullTimeEmployee.getTitle();
+        String newTitle = getNextTitle(currentTitle);
 
 
 
@@ -112,4 +113,21 @@ public class HR {
             System.out.println("Staff not found or not a part-time employee.");
         }
     }
+    public static String getNextTitle(String currentTitle) {
+        //gets all valid titles
+        List<String> titles = Titles.getTitles();
+        //gets position of current title
+        int currentIndex = titles.indexOf(currentTitle);
+        //makes sure its valid
+        if (currentIndex == -1) {
+            throw new IllegalArgumentException("Invalid title provided: " + currentTitle);
+        }
+        //cant promote to president, most likley beyond hr's capability
+        if (currentIndex -1 < titles.size()) {
+            return titles.get(currentIndex -1 );
+        } else {
+            return "No further progression available";
+        }
+    }
+
 }
