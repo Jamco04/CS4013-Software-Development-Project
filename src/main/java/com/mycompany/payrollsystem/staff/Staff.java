@@ -71,8 +71,11 @@ public abstract class Staff {
         return scalePoint;
     }
 
+    public String getPassword(){ return password; }
+
     @Override
     public String toString() {
         return String.format("name: %s | id: %d | title: %s | scalePoint: %d", name, id, title, scalePoint);
     }
+
 }

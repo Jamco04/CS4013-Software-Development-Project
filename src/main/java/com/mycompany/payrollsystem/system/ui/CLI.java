@@ -113,7 +113,25 @@ public class CLI {
             System.out.println("Employee not found. Please contact the admin.");
         } else {
             System.out.println("Employee login successful!");
-            runEmployeeCLI(new Employee(staff));
+            System.out.println("Enter your password:");
+            int maxAttempts = 3;
+
+            while (maxAttempts > 0) {
+                String inputPassword = in.nextLine().trim();
+
+                if (staff.getPassword().equals(inputPassword)) {
+                    System.out.println("Password accepted. Welcome!");
+                    runEmployeeCLI(new Employee(staff));
+                    return;
+                } else {
+                    maxAttempts--;
+                    if (maxAttempts > 0) {
+                        System.out.println("Invalid password. You have " + maxAttempts + " attempt(s remaining.");
+                    } else {
+                        System.out.println("Too many failed attempts. You are now logged out.");
+                    }
+                }
+            }
         }
     }
 

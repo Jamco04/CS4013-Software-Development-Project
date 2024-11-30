@@ -101,7 +101,7 @@ public class Admin {
         // we alo need the getCatagory method so Instantiating this works out well
 
         int maxScale = loader.getMaxScalePoints(title);
-        while (scalePoint<0 || scalePoint>maxScale) {
+        while (scalePoint<=0 || scalePoint>maxScale) {
             System.out.println("Invalid Scalepoint. The maximum Scale Point for this title is "+maxScale);
             scalePoint = readInt("Enter scale point:");
         }
