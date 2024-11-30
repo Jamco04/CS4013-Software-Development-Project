@@ -2,7 +2,6 @@ package com.mycompany.payrollsystem.system;
 
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
-import com.mycompany.payrollsystem.staff.Staff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PayrollSystemTest {
     private PayrollSystem payrollSystem;
-    private PayLoader loader;
 
     @BeforeEach
     void setUp() throws Exception {
-        loader = new PayLoader();
-        loader.loadPay("src/database/Salaries.csv");
+        ScaleLoader.loadScales("src/database/Salaries.csv");
         payrollSystem = new PayrollSystem();
         StaffContainer.clearAllStaff(); // Clear all staff
         payrollSystem.clearPayClaims(); // Clear pay claims
@@ -43,7 +40,7 @@ class PayrollSystemTest {
 
         var payslip = payrollSystem.generatePayslipForEmployee(employee);
         assertNotNull(payslip);
-        assertEquals(loader.getPay("Academic", "Professor", "3") / 12, payslip.getGrossPay());
+        assertEquals(ScaleLoader.getPay("Academic", "Professor", "3") / 12, payslip.getGrossPay());
     }
 
     @Test
@@ -55,14 +52,14 @@ class PayrollSystemTest {
         var payslip = payrollSystem.generatePayslipForEmployee(employee);
 
         assertNotNull(payslip);
-        assertEquals(loader.getPay("", "Exam Invigilator", "1") * 10, payslip.getGrossPay());
+        assertEquals(ScaleLoader.getPay("", "Exam Invigilator", "1") * 10, payslip.getGrossPay());
     }
 
     @Test
     void testGenerateMonthlyPayslips() {
         // Ensure staff is present
         FullTimeEmployee fullTimeEmployee = new FullTimeEmployee("Alice", 4, "Academic", "Professor", 3, "password");
-        PartTimeEmployee partTimeEmployee = new PartTimeEmployee("Charlie", 5, "Lab Tutor", 1, "password");
+        PartTimeEmployee partTimeEmployee = new PartTimeEmployee("Charlie", 5, "LabTutor", 1, "password");
         StaffContainer.add(fullTimeEmployee);
         StaffContainer.add(partTimeEmployee);
 

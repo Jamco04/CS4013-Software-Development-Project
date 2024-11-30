@@ -1,11 +1,10 @@
 package com.mycompany.payrollsystem.staff;
 
 
-import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.Payslip;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public abstract class Staff {
@@ -49,7 +48,7 @@ public abstract class Staff {
     }
 
 
-    public abstract boolean updateScalePoint(PayLoader loader); //different in subclasses
+    public abstract boolean updateScalePoint(); //different in subclasses
 
     public boolean authenticate(String inputPassword) {
         return password.equals(inputPassword);
@@ -71,11 +70,12 @@ public abstract class Staff {
         return scalePoint;
     }
 
-    public String getPassword(){ return password; }
-
     @Override
     public String toString() {
         return String.format("name: %s | id: %d | title: %s | scalePoint: %d", name, id, title, scalePoint);
     }
 
+    public String getPassword() {
+        return password;
+    }
 }

@@ -1,18 +1,17 @@
 package com.mycompany.payrollsystem.staff;
 
-import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.ScaleLoader;
 
 
 
 public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate
-    private final PayLoader loader = new PayLoader();
 
 
 
     public PartTimeEmployee(String name, int id, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
-        payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
+        payRate = ScaleLoader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
     }
 
 
@@ -20,17 +19,17 @@ public class PartTimeEmployee extends Staff {
         if (hoursWorked < 0) {
             throw new IllegalArgumentException("Hours worked cannot be negative.");
         }
-        payRate = loader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
+        payRate = ScaleLoader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
         return  payRate * hoursWorked; // Pay is based on hours worked
     }
 
 
     @Override
-    public boolean updateScalePoint(PayLoader loader) {
-        int maxScalePoints = loader.getMaxScalePoints(title);
+    public boolean updateScalePoint() {
+        int maxScalePoints = ScaleLoader.getMaxScalePoints(title);
         if (scalePoint < maxScalePoints) {
             scalePoint++;
-            payRate = loader.getPay("", title, String.valueOf(scalePoint));
+            payRate = ScaleLoader.getPay("", title, String.valueOf(scalePoint));
             return true;
         }
         return false;

@@ -1,6 +1,6 @@
 package com.mycompany.payrollsystem.stresstest;
 
-import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.PayrollSystem;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
@@ -13,7 +13,7 @@ public class TestRunner {
         System.out.println("==== Begin Test Run ====");
 
         System.out.println("---- Loading Pay Rates ----");
-        PayLoader.loadPay("src/database/Salaries.csv");
+        ScaleLoader.loadScales("src/database/Salaries.csv");
 
         System.out.println("---- Loading Employees ----");
         EmployeeLoader.loadEmployeesFromFile("src/database/SampleEmployees.csv");

@@ -1,15 +1,15 @@
 package com.mycompany.payrollsystem.system.user;
 
+
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
-import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+
 import java.util.Scanner;
 
 public class Admin {
@@ -18,7 +18,7 @@ public class Admin {
 
 
     // Helper method to safely read integers
-    public int readInt(String message) {
+    private int readInt(String message) {
         while (true) {
             System.out.println(message);
             try {
@@ -30,14 +30,13 @@ public class Admin {
     }
 
 
-
+    // Helper method to read strings
     private String readString(String message) {
         System.out.println(message);
         return in.nextLine().trim();    //trim removes spaces before or after the actual string
     }
 
     public void addStaff() {
-        List<String> validTitles = Titles.getTitles();
 
         // Staff Type
         int type = readInt("Enter staff type: (1) full-time (2) part-time:");
@@ -48,74 +47,56 @@ public class Admin {
 
         // Name
         String name = readString("Enter staff name:");
-        
+
         // Unique ID
         int id;
         while (true) {
             id = readInt("Enter staff ID:");
-
-            if (Integer.toString(id).length() != 5){
-                System.out.println("Staff ID Must be 5 digits.");
-            }
-            else if (StaffContainer.getStaffById(id) != null) {
+            if (StaffContainer.getStaffById(id) != null) {
                 System.out.println("Staff ID already exists. Please enter a unique ID.");
             } else {
                 break;
             }
-
         }
 
-        //title validation
-        String title = "";
+        // Title
+        String title;
         while (true) {
-            title = readString("Enter staff title:").trim();
-            title = title.substring(0, 1).toUpperCase() + title.substring(1).toLowerCase();
-            if (Titles.getTitles().stream().map(String::toLowerCase).toList().contains(title.toLowerCase())) {
-                System.out.println("Title accepted: " + title);
-                break;
+            title = readString("Enter staff title:");
+            if (!(ScaleLoader.validTitle(title))){
+                System.out.println("Title does not exist. Please enter a valid title.");
             } else {
-                System.out.println("Invalid title.");
-
-                //suggest titles part of code
-                if (!title.isEmpty()) {
-                    char firstLetter = Character.toUpperCase(title.charAt(0));
-                    List<String> suggestions = new ArrayList<>();
-
-                    for (int i = 0; i < validTitles.size(); i++) {
-                        String validTitle = validTitles.get(i);
-                        if (Character.toUpperCase(validTitle.charAt(0)) == firstLetter) {
-                            suggestions.add(validTitle);
-                        }
-                    }
-
-                    if (!suggestions.isEmpty()) {
-                        System.out.println("Did you mean one of these? " + String.join(", ", suggestions));
-                    }
-                }
+                break;
             }
         }
 
+
         // Scale Point
         int scalePoint = readInt("Enter scale point:");
-        PayLoader loader = new PayLoader();  //by Instantiating the class we can use its method for retrieving the  max scalepoint
-        // we alo need the getCatagory method so Instantiating this works out well
-
-        int maxScale = loader.getMaxScalePoints(title);
-        while (scalePoint<=0 || scalePoint>maxScale) {
-            System.out.println("Invalid Scalepoint. The maximum Scale Point for this title is "+maxScale);
+        int maxScalePoint = ScaleLoader.getMaxScalePoints(title);
+        while (scalePoint > maxScalePoint) {
+            System.out.println("Maximum scalepoint is: " + maxScalePoint);
             scalePoint = readInt("Enter scale point:");
         }
 
         // Password
-        String password = readString("Set a password for this employee:");
-        while (password.length()<7) {
-            System.out.println("Password must have at least 8 characters");
+        String password = readString("Set an 8 character password for this employee:");
+        while (password.length()!=8 || password.contains(" ")) {
+            System.out.println("Password must have exactly 8 characters with no spaces.");
             password = readString("Set a password for this employee:");
         }
+
         // Full-Time Employee
         if (type == 1) {
-
-            String category = PayLoader.getCategoryFromTitle(title);
+            String category;
+            while (true) {
+                category = readString("Enter category:");
+                if (!(ScaleLoader.validCategory(category))){
+                    System.out.println("Category does not exist. Please enter a valid category.");
+                } else {
+                    break;
+                }
+            }
             FullTimeEmployee fullTimeEmployee = new FullTimeEmployee(name, id, category, title, scalePoint, password);
             if (StaffContainer.add(fullTimeEmployee)) {
                 System.out.println("Full-time employee added successfully!");   //otherwise, java does garbage collection automatically
@@ -141,7 +122,8 @@ public class Admin {
 
     private void saveAllStaffToCSV() {
         String fileName = "employees.csv";
-        try (FileWriter writer = new FileWriter(fileName)) {
+        String fullPath = "src/output/" + fileName;
+        try (FileWriter writer = new FileWriter(fullPath)) {
             // Write the CSV header
             writer.write("Employee,Name,ID,Category,Title\n");
 
@@ -156,7 +138,7 @@ public class Admin {
                         category,
                         staff.getTitle()));
             }
-            System.out.println("Staff details have been saved to " + fileName);
+            System.out.println("Staff details have been saved to " + fullPath);
         } catch (IOException e) {
             System.out.println("Error saving staff details to CSV: " + e.getMessage());
         }

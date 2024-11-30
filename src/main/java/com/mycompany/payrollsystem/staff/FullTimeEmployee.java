@@ -1,8 +1,7 @@
 package com.mycompany.payrollsystem.staff;
 
-import com.mycompany.payrollsystem.system.PayLoader;
+import com.mycompany.payrollsystem.system.ScaleLoader;
 import java.time.temporal.ChronoUnit;
-
 import java.time.LocalDateTime;
 
 public class FullTimeEmployee extends Staff {
@@ -14,12 +13,12 @@ public class FullTimeEmployee extends Staff {
     public FullTimeEmployee(String name, int id, String category, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
         this.category = category;
-        this.salary = getSalary(new PayLoader());
-        checkTopScale(new PayLoader());
+        this.salary = getSalary();
+        checkTopScale();
     }
 
-    public void checkTopScale(PayLoader loader){
-        int maxScalePoints = loader.getMaxScalePoints(title);
+    public void checkTopScale(){
+        int maxScalePoints = ScaleLoader.getMaxScalePoints(title);
         if (scalePoint == maxScalePoints){
             if (topScaleStartTime == null) {
                 topScaleStartTime = LocalDateTime.now();
@@ -30,12 +29,12 @@ public class FullTimeEmployee extends Staff {
         }
     }
 
-    public boolean updateScalePoint(PayLoader loader) {
-        int maxScalePoints = loader.getMaxScalePoints(title);
+    public boolean updateScalePoint() {
+        int maxScalePoints = ScaleLoader.getMaxScalePoints(title);
         if (scalePoint < maxScalePoints) {
-            checkTopScale(loader);
+            checkTopScale();
             scalePoint++;
-            salary = getSalary(loader);
+            salary = getSalary();
             return true;
         } else {
             return false; // Already at top
@@ -48,24 +47,24 @@ public class FullTimeEmployee extends Staff {
         return ChronoUnit.YEARS.between(topScaleStartTime, LocalDateTime.now());
     }
 
-    public void promoteToNewTitle(String newTitle, PayLoader loader) {
+    public void promoteToNewTitle(String newTitle) {
         title = newTitle;
         int yearsAtTop = (int) getYearsAtTop();
         topScaleStartTime = null; // Reset top scale timer
-        int maxScalePoints = loader.getMaxScalePoints(newTitle);
+        int maxScalePoints = ScaleLoader.getMaxScalePoints(newTitle);
 
 
-        scalePoint = Math.min(yearsAtTop, loader.getMaxScalePoints(newTitle));   //new scalepoint will be years at top (limit is the maximum scale point)
+        scalePoint = Math.min(yearsAtTop, ScaleLoader.getMaxScalePoints(newTitle));   //new scalepoint will be years at top (limit is the maximum scale point)
         scalePoint = scalePoint == 0 ? 1 : scalePoint; //years could be 0, so make skillpoint 1
 
-        salary = getSalary(loader);
-        checkTopScale(loader);
+        salary = getSalary();
+        checkTopScale();
 
 
     }
 
-    public double getSalary(PayLoader loader) {
-        return loader.getPay(category, title, String.valueOf(scalePoint));
+    public double getSalary() {
+        return ScaleLoader.getPay(category, title, String.valueOf(scalePoint));
     }
 
     public String getCategory() {

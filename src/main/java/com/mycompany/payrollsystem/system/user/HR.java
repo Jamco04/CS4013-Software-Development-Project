@@ -3,7 +3,6 @@ package com.mycompany.payrollsystem.system.user;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.Staff;
-import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HR {
-    private final PayLoader loader = new PayLoader();
     private final Scanner in = new Scanner(System.in);
 
     public void annualPromotion() { //promotion every October for all FullTime Employees
@@ -28,7 +26,7 @@ public class HR {
         for (Staff staff : StaffContainer.getAllStaff()) {
             if (staff instanceof FullTimeEmployee) {
                 FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) staff;
-                if (fullTimeEmployee.updateScalePoint(loader)) {
+                if (fullTimeEmployee.updateScalePoint()) {
                     System.out.println("Promoted: " + fullTimeEmployee.getName() + " to scale point " + fullTimeEmployee.getScalePoint());
                 } else {
                     System.out.println(fullTimeEmployee.getName() + " is already at the top of their scale and cannot be promoted further.");
@@ -70,7 +68,7 @@ public class HR {
         // Calculate new scale point based on time spent at the top
         int newScalePoint = calculateNewScalePoint(fullTimeEmployee);
 
-        fullTimeEmployee.promoteToNewTitle(newTitle, loader);
+        fullTimeEmployee.promoteToNewTitle(newTitle);
         System.out.println("Successfully promoted " + fullTimeEmployee.getName() + " to title " + newTitle + " at scale point " + newScalePoint);
     }
 
@@ -104,7 +102,7 @@ public class HR {
 
         if (staff instanceof PartTimeEmployee) {
             PartTimeEmployee partTimeEmployee = (PartTimeEmployee) staff;
-            if (partTimeEmployee.updateScalePoint(loader)) {
+            if (partTimeEmployee.updateScalePoint()) {
                 System.out.println("Successfully promoted " + partTimeEmployee.getName() + " to scale point " + partTimeEmployee.getScalePoint());
             } else {
                 System.out.println("Cannot promote " + partTimeEmployee.getName() + " as they are already at the top of their scale.");

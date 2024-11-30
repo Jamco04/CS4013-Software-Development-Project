@@ -1,3 +1,4 @@
+
 package com.mycompany.payrollsystem.system.javafx;
 
 import javafx.collections.FXCollections;
@@ -48,7 +49,7 @@ public class LoginController {
     }
 
     private boolean authenticate(String role, String username, String password) {
-        if (role.equals("Admin") && username.equals("admin") && password.equals("admin123")) {
+        if (role.toLowerCase().equals("admin") && password.equals("admin123")) {
             return true;
         }
         return false;

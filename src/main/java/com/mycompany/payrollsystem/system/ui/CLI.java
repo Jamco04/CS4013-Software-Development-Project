@@ -1,20 +1,14 @@
 package com.mycompany.payrollsystem.system.ui;
 
-import com.mycompany.payrollsystem.system.PayLoader;
 import com.mycompany.payrollsystem.system.PayrollSystem;
 import com.mycompany.payrollsystem.system.StaffContainer;
 import com.mycompany.payrollsystem.system.user.Admin;
 import com.mycompany.payrollsystem.system.user.Employee;
 import com.mycompany.payrollsystem.system.user.HR;
-
-
 import java.util.Scanner;
-
-import static com.mycompany.payrollsystem.system.StaffLoader.addRandomStaffFromDatabase;
 
 public class CLI {
     private final Scanner in = new Scanner(System.in);
-    private final PayLoader loader = new PayLoader();
     private final PayrollSystem payrollSystem = new PayrollSystem();
     private static final String ADMIN_PASSWORD = "admin123";    //passwords are predefined
     private static final String HR_PASSWORD = "hr123";
@@ -23,7 +17,9 @@ public class CLI {
         while (true) {
             System.out.println("Welcome to the Payroll System!");
             System.out.println("Please enter your role (Admin/HR/Employee) or type 'quit' to exit:");
+
             if (!in.hasNextLine()) break; // Avoid exceptions if input ends (I wrote this for JUnit (Automatic input))
+
             String role = in.nextLine().trim().toLowerCase();
 
 
@@ -54,33 +50,32 @@ public class CLI {
 
     // Admin authentication
     private boolean authenticateAdmin() {
-        final int MaxAttempts = 3;
-        int attempts = 0;
+        int attemptsRemaining = 3;
 
-        while (attempts < MaxAttempts) {
+        while (true) {
             System.out.println("Enter admin password:");
             String password = in.nextLine().trim();
 
             if (ADMIN_PASSWORD.equals(password)) {
                 System.out.println("Admin login successful!");
                 return true;
+
             } else {
-                attempts++;
-                if (attempts < MaxAttempts) {
-                    System.out.println("Invalid password. Try again.");
+                attemptsRemaining--;
+                if (attemptsRemaining > 0) {
+                    System.out.println("Invalid password. You have " + attemptsRemaining + " attempt/s remaining.");
                 } else {
                     System.out.println("Invalid password. Access denied. Too many attempts.");
+                    return false;
                 }
             }
         }
-        return false;
     }
 
     // HR authentication
     private boolean authenticateHR() {
-        final int MaxAttempts = 3;
-        int attempts = 0;
-        while (attempts < MaxAttempts) {
+        int attemptsRemaining = 3;
+        while (true) {
             System.out.println("Enter HR password:");
             String password = in.nextLine().trim();
 
@@ -88,19 +83,21 @@ public class CLI {
                 System.out.println("HR login successful!");
                 return true;
             } else {
-                attempts++;
-                if (attempts < MaxAttempts) {
-                    System.out.println("Invalid password. Try again.");
+                attemptsRemaining--;
+                if (attemptsRemaining > 0) {
+                    System.out.println("Invalid password. You have " + attemptsRemaining + " attempt/s remaining.");
                 } else {
                     System.out.println("Invalid password. Access denied. Too many attempts.");
+                    return false;
                 }
             }
         }
-        return false;
     }
 
     // Employee authentication
     private void authenticateAndRunEmployee() {
+
+
         System.out.println("Enter your ID:");
         int id;
         try {
@@ -113,25 +110,29 @@ public class CLI {
         var staff = StaffContainer.getStaffById(id);
         if (staff == null) {
             System.out.println("Employee not found. Please contact the admin.");
-        } else {
-            System.out.println("Employee login successful!");
-            System.out.println("Enter your password:");
-            int maxAttempts = 3;
+            return;
+        }
 
-            while (maxAttempts > 0) {
-                String inputPassword = in.nextLine().trim();
 
-                if (staff.getPassword().equals(inputPassword)) {
-                    System.out.println("Password accepted. Welcome!");
-                    runEmployeeCLI(new Employee(staff));
-                    return;
+        System.out.println("Enter your password:");
+
+        int attemptsRemaining = 3;
+
+        while (true) {
+            String inputPassword = in.nextLine().trim();
+
+            if (staff.getPassword().equals(inputPassword)) {
+                System.out.println("Password accepted. Welcome!");
+                runEmployeeCLI(new Employee(staff));
+                return;
+
+            } else {
+                attemptsRemaining--;
+                if (attemptsRemaining > 0) {
+                    System.out.println("Invalid password. You have " + attemptsRemaining + " attempt/s remaining.");
                 } else {
-                    maxAttempts--;
-                    if (maxAttempts > 0) {
-                        System.out.println("Invalid password. You have " + maxAttempts + " attempt(s remaining.");
-                    } else {
-                        System.out.println("Too many failed attempts. You are now logged out.");
-                    }
+                    System.out.println("Too many failed attempts. You are now logged out.");
+                    return;
                 }
             }
         }
@@ -140,7 +141,7 @@ public class CLI {
     private void runAdminCLI(Admin adminAccess) {
         boolean more = true;
         while (more) {
-            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips \n4) Logout \n5) Load sample employees");
+            System.out.println("Admin Menu: \n1) Add Staff \n2) View Staff \n3) Generate Payslips \n4) Logout");
             String command = in.nextLine().trim();
             switch (command) {
                 case "1":
@@ -155,12 +156,6 @@ public class CLI {
                 case "4":
                     System.out.println("Logging out...");
                     more = false;
-                    break;
-
-                case "5":
-                    Admin admin = new Admin();// instantiating again
-                    int numberOfEmployees = admin.readInt("Enter the number of random employees to generate:");
-                    addRandomStaffFromDatabase("src/database/SampleEmployees.csv",numberOfEmployees);
                     break;
                 default:
                     System.out.println("Invalid command. Please try again.");
@@ -181,7 +176,7 @@ public class CLI {
                     hrAccess.promoteToNextSalaryScale();
                     break;
                 case "3":
-                    //hrAccess.promoteToNextScalePoint();
+                    hrAccess.promoteToNextScalePoint();
                     break;
                 case "4":
                     System.out.println("Logging out...");

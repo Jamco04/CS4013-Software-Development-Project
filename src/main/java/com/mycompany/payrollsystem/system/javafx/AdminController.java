@@ -1,6 +1,7 @@
 package com.mycompany.payrollsystem.system.javafx;
 
 import com.mycompany.payrollsystem.system.user.Admin;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
@@ -67,5 +68,8 @@ public class AdminController {
         alert.setTitle(title);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void handleViewStaff(ActionEvent actionEvent) {
     }
 }

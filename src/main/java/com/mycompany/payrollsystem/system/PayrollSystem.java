@@ -88,7 +88,7 @@ public class PayrollSystem {
         double grossPay;
 
         if (staff instanceof FullTimeEmployee fullTimeEmployee) {
-            grossPay = fullTimeEmployee.getSalary(new PayLoader()) / 12; // Monthly pay
+            grossPay = fullTimeEmployee.getSalary() / 12; // Monthly pay
         } else if (staff instanceof PartTimeEmployee partTimeEmployee) {
             if (!payClaims.containsKey(partTimeEmployee.getId())) {
                 System.out.println("No pay claim found for part-time employee: " + partTimeEmployee.getName());
@@ -120,7 +120,8 @@ public class PayrollSystem {
 
     private void savePayslipsToCSV(ArrayList<Payslip> payslips) {
         String fileName = "Payslips_" + LocalDate.now() + ".csv";
-        try (FileWriter writer = new FileWriter(fileName)) {
+        String fullPath = "src/output/" + fileName;
+        try (FileWriter writer = new FileWriter(fullPath)) {
             // Write the CSV header
             writer.write("Name,ID,Pay Period,Gross Pay,Tax,Net Pay\n");
 
@@ -135,7 +136,7 @@ public class PayrollSystem {
                         payslip.getNetPay()));
             }
 
-            System.out.println("Payslips saved to file: " + fileName);
+            System.out.println("Payslips saved to file: " + fullPath);
         } catch (IOException e) {
             System.out.println("Error saving payslips to CSV: " + e.getMessage());
         }
