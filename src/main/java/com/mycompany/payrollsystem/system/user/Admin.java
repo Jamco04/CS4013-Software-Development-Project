@@ -19,7 +19,7 @@ public class Admin {
 
 
     // Helper method to safely read integers
-    private int readInt(String message) {
+    public int readInt(String message) {
         while (true) {
             System.out.println(message);
             try {

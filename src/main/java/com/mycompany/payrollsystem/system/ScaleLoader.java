@@ -14,6 +14,7 @@ public class ScaleLoader {
     private static final HashMap<String, Integer> titleScalePoints = new HashMap<>();   //for max scalepoint
     private static final ArrayList<String> titles = new ArrayList<>();  //title validation
     private static final ArrayList<String> categories = new ArrayList<>();  //title validation
+    private static final HashMap<String, String> titleCategory = new HashMap<>();
 
     public static void loadScales(String csvFile) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
@@ -56,4 +57,21 @@ public class ScaleLoader {
     private static String generateKey(String category, String role, String tier) { // returns key
         return category + "-" + role + "-" + tier;
     }
+    public static void loadTitleCategoryMap(String csvFile) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+            String line = reader.readLine(); // Skip header if exists
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String category = data[0];
+                String title = data[1];
+                // Store the mapping in the map
+                titleCategory.put(title, category);
+            }
+        }
+    }
+
+    public static String getCategoryFromTitle(String title) {
+        return titleCategory.getOrDefault(title, "Unknown Category");
+    }
+
 }
