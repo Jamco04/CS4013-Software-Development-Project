@@ -31,6 +31,8 @@ public class ScaleLoader {
                 titles.add(title);  //will contain duplicates but will work
                 categories.add(category);   //same case
 
+                titleCategory.put(title, category);
+
                 int currentTier = Integer.parseInt(tier);
                 titleScalePoints.put(title, Math.max(titleScalePoints.getOrDefault(title, 0), currentTier));
             }
@@ -57,19 +59,6 @@ public class ScaleLoader {
     private static String generateKey(String category, String role, String tier) { // returns key
         return category + "-" + role + "-" + tier;
     }
-    public static void loadTitleCategoryMap(String csvFile) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-            String line = reader.readLine(); // Skip header if exists
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                String category = data[0];
-                String title = data[1];
-                // Store the mapping in the map
-                titleCategory.put(title, category);
-            }
-        }
-    }
-
     public static String getCategoryFromTitle(String title) {
         return titleCategory.getOrDefault(title, "Unknown Category");
     }

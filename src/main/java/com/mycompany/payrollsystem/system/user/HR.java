@@ -9,7 +9,6 @@ import com.mycompany.payrollsystem.system.StaffContainer;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import static com.mycompany.payrollsystem.system.ScaleLoader.validTitle;
 
 public class HR {
     private final Scanner in = new Scanner(System.in);
@@ -64,12 +63,9 @@ public class HR {
 
         System.out.println("Enter new salary scale (title) for the employee:");
         String newTitle = "";
-        while (!(validTitle(newTitle))){
+        while (!(ScaleLoader.validTitle(newTitle))){
+            System.out.println("Invalid title. Please enter a valid title.");
             newTitle = in.nextLine().trim();
-            if (!validTitle(newTitle)) {
-                System.out.println("Invalid title. Please enter a valid title.");
-                return;
-            }
         }
 
 

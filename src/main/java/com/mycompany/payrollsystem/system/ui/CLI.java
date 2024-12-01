@@ -7,7 +7,7 @@ import com.mycompany.payrollsystem.system.user.Employee;
 import com.mycompany.payrollsystem.system.user.HR;
 import java.util.Scanner;
 
-import static com.mycompany.payrollsystem.system.StaffLoader.addRandomStaffFromDatabase;
+import static com.mycompany.payrollsystem.stresstest.StaffLoader.addRandomStaffFromDatabase;
 
 public class CLI {
     private final Scanner in = new Scanner(System.in);
@@ -160,9 +160,8 @@ public class CLI {
                     more = false;
                     break;
                 case "5":
-                    Admin admin = new Admin();// instantiating again
-                    int numberOfEmployees = admin.readInt("Enter the number of random employees to generate:");
-                    addRandomStaffFromDatabase("src/database/SampleEmployees.csv",numberOfEmployees);
+                    int numberOfEmployees = adminAccess.readInt("Enter the number of random employees to generate:");
+                    addRandomStaffFromDatabase("src/database/SampleEmployees.csv", numberOfEmployees);
                     break;
                 default:
                     System.out.println("Invalid command. Please try again.");

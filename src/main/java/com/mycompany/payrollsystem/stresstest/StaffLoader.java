@@ -1,8 +1,11 @@
-package com.mycompany.payrollsystem.system;
+package com.mycompany.payrollsystem.stresstest;
 import java.io.*;
 import java.util.*;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
+import com.mycompany.payrollsystem.system.ScaleLoader;
+import com.mycompany.payrollsystem.system.StaffContainer;
+
 public class StaffLoader {
     public static void addRandomStaffFromDatabase(String databaseLocation, int numberOfEmployeesToAdd) {
         List<String> databaseEntries = new ArrayList<>();

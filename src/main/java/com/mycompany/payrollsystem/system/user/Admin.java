@@ -145,9 +145,4 @@ public class Admin {
         }
     }
 
-    public void generatePayslips() {    //For GUI
-        PayrollSystem payrollSystem = new PayrollSystem();
-        payrollSystem.generateMonthlyPayslips();
-    }
-
 }
