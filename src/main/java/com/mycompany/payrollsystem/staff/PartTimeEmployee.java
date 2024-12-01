@@ -8,12 +8,25 @@ public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate
 
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param title
+     * @param scalePoint
+     * @param password
+     */
 
     public PartTimeEmployee(String name, int id, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
         payRate = ScaleLoader.getPay("", String.valueOf(this.title), String.valueOf(this.scalePoint));
     }
 
+    /**
+     *
+     * @param hoursWorked
+     * @return
+     */
 
     public double getPay(double hoursWorked) {    //sets payRate and return "salary"
         if (hoursWorked < 0) {
@@ -23,6 +36,10 @@ public class PartTimeEmployee extends Staff {
         return  payRate * hoursWorked; // Pay is based on hours worked
     }
 
+    /**
+     *
+     * @return
+     */
 
     @Override
     public boolean updateScalePoint() {
@@ -35,6 +52,10 @@ public class PartTimeEmployee extends Staff {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
 
     @Override
     public String toString() {

@@ -10,12 +10,27 @@ public class FullTimeEmployee extends Staff {
     private double salary;      //only FullTimeEmployee has annual salary
     private LocalDateTime topScaleStartTime; //Checks time that employee has been at the top scalePoint
 
+    /**
+     * Constructor for full time employees
+     * @param name employees name
+     * @param id employees id
+     * @param category employees current category
+     * @param title employees current title
+     * @param scalePoint employees current scalePoint
+     * @param password employees current password
+     */
+
     public FullTimeEmployee(String name, int id, String category, String title, int scalePoint, String password) {
         super(name, id, title, scalePoint, password);
         this.category = category;
         this.salary = getSalary();
         checkTopScale();
     }
+
+
+    /**
+     *
+     */
 
     public void checkTopScale(){
         int maxScalePoints = ScaleLoader.getMaxScalePoints(title);
@@ -29,6 +44,11 @@ public class FullTimeEmployee extends Staff {
         }
     }
 
+    /**
+     *
+     * @return
+     */
+
     public boolean updateScalePoint() {
         int maxScalePoints = ScaleLoader.getMaxScalePoints(title);
         if (scalePoint < maxScalePoints) {
@@ -41,11 +61,20 @@ public class FullTimeEmployee extends Staff {
         }
     }
 
+    /**
+     *
+     * @return
+     */
 
     public long getYearsAtTop() {
         if (topScaleStartTime == null) return 0;
         return ChronoUnit.YEARS.between(topScaleStartTime, LocalDateTime.now());
     }
+
+    /**
+     *
+     * @param newTitle
+     */
 
     public void promoteToNewTitle(String newTitle) {
         title = newTitle;
@@ -62,13 +91,28 @@ public class FullTimeEmployee extends Staff {
 
     }
 
+    /**
+     *
+     * @return
+     */
+
     public double getSalary() {
         return ScaleLoader.getPay(category, title, String.valueOf(scalePoint));
     }
 
+    /**
+     *
+     * @return
+     */
+
     public String getCategory() {
         return category;
     }
+
+    /**
+     *
+     * @return
+     */
 
     @Override
     public String toString() {
