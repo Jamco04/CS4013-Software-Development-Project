@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.1">
+  <diagram name="Page-1" id="bo0OQaSEZOotbeJ5BzEe">
+    <mxGraphModel dx="758" dy="1483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="AxA_G6CkA61xcu8ILu51-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.557;entryY=0.948;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-1" target="AxA_G6CkA61xcu8ILu51-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-1" value="Staff" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-7" value="-Name: String&lt;div&gt;-ID: int&lt;/div&gt;&lt;div&gt;-Title: String&lt;/div&gt;&lt;div&gt;-ScalePoint: int&amp;nbsp;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxA_G6CkA61xcu8ILu51-1">
+          <mxGeometry y="30" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-2" target="AxA_G6CkA61xcu8ILu51-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-2" value="PartTime" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="260" width="110" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-8" value="-Name: String&lt;div&gt;-Id: int&lt;/div&gt;&lt;div&gt;-Title: String&lt;/div&gt;&lt;div&gt;-ScalePoint:int&lt;/div&gt;&lt;div&gt;-PayRate:int&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxA_G6CkA61xcu8ILu51-2">
+          <mxGeometry y="30" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-4" target="AxA_G6CkA61xcu8ILu51-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-4" value="Fulltime" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="260" width="110" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-6" value="-Name: String&lt;div&gt;-ID: int&lt;/div&gt;&lt;div&gt;-Category: String&lt;/div&gt;&lt;div&gt;-Title: String&lt;/div&gt;&lt;div&gt;-ScalePoint: int&lt;/div&gt;&lt;div&gt;-Salary: int&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxA_G6CkA61xcu8ILu51-4">
+          <mxGeometry y="30" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-16" value="Payslip" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="-260" width="160" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-25" value="-name: String&lt;div&gt;-ID: int&lt;/div&gt;&lt;div&gt;-grossPay: double&lt;/div&gt;&lt;div&gt;-tax: double&lt;/div&gt;&lt;div&gt;-netPay: double&lt;/div&gt;&lt;div&gt;-PayPeriod: String&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxA_G6CkA61xcu8ILu51-16">
+          <mxGeometry y="20" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-17" value="PayLoader" style="swimlane;whiteSpace=wrap;html=1;startSize=20;" vertex="1" parent="1">
+          <mxGeometry x="180" y="-100" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-23" value="-payGrades: double&lt;div&gt;-titleScalePoints: int&lt;/div&gt;&lt;div&gt;-titleCategory: String&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxA_G6CkA61xcu8ILu51-17">
+          <mxGeometry y="20" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-18" target="AxA_G6CkA61xcu8ILu51-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-18" value="staffContainer" style="swimlane;whiteSpace=wrap;html=1;startSize=20;" vertex="1" parent="1">
+          <mxGeometry x="450" y="-100" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-24" value="-staffMap: int" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxA_G6CkA61xcu8ILu51-18">
+          <mxGeometry y="20" width="110" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-19" target="AxA_G6CkA61xcu8ILu51-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-19" target="AxA_G6CkA61xcu8ILu51-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-19" value="PayrollSystem" style="swimlane;whiteSpace=wrap;html=1;startSize=20;" vertex="1" parent="1">
+          <mxGeometry x="280" y="10" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-22" value="-lowerRate: double&lt;div&gt;-higherRate: double&lt;/div&gt;&lt;div&gt;-PRSI_Rate: double&lt;/div&gt;&lt;div&gt;-Union_Fee: double&lt;/div&gt;&lt;div&gt;-Heath_Insurance_Fee: double&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="30" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="AxA_G6CkA61xcu8ILu51-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="AxA_G6CkA61xcu8ILu51-23" target="AxA_G6CkA61xcu8ILu51-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
