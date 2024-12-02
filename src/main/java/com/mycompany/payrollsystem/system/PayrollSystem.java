@@ -34,7 +34,7 @@ public class PayrollSystem {
         LocalDate today = LocalDate.now();
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
-        if (today.isBefore(secondFriday)) { // After testing, change to isAfter
+        if (today.isAfter(secondFriday)) { // After testing, change to isAfter
             System.out.println("Pay claims can no longer be submitted for this month.");
             return false;
         }
@@ -73,7 +73,7 @@ public class PayrollSystem {
             return payslips;
         }
 
-        if (today.getDayOfMonth() == 25) {  // After testing, change to !=25
+        if (today.getDayOfMonth() != 25) {  // After testing, change to !=25
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
         }
