@@ -2,7 +2,7 @@
 
 ## Payroll System HelpFile
 
-This HelpFile provides an overview of the Payroll System functionalities. Follow the steps below to clone and set up the repository.
+This HelpFile provides an overview of the Payroll System functionalities.
 
 **Note:** For testing, ensure you adjust the conditions (`October`, `25`, `isAfter`).
 
