@@ -1,30 +1,69 @@
 Employee,Name,ID,Category,Title
-Full-Time,Adam Urban,1,Academic,Professor
+Full-Time,Ella Martinez,1,Library,Sub Librarian
+Part-Time,Enda Buckley,73347,,ITSupportStaff
+Full-Time,Ethan Taylor,131,Teachers,Teaching Fellow
 Full-Time,James Martinez,134,ULAC,Multi Activity Instructor (Grade II)
 Full-Time,Ethan Rodriguez,135,Academic,Associate Professor B
-Full-Time,Olivia Harrison,201,Administrative,Senior Administrative Officer III
-Full-Time,Sophia Miller,203,Education Procurement Services,EPS Category Specialist Higher
+Part-Time,Andrei Birsan,72584,,GroundsStaff
+Full-Time,Michael Green,394,Administrative,Senior Executive Administrator
 Full-Time,Emma Turner,143,ULAC,Multi Activity Instructor (Grade I)
-Part-Time,Adam Urban,28496,,ExamInvigilator
+Full-Time,Michael Green,144,Academic,Assistant Professor
 Full-Time,Mason Lee,401,Information Technology,Senior Computer Operator
 Full-Time,Ella Walker,402,Information Technology,Computer Operator
 Full-Time,Oliver Harris,403,Information Technology,Print Operator II
+Full-Time,Amelia Adams,404,Information Technology,Print Operator I
 Full-Time,Henry Garcia,405,Information Technology,Computer Lab Attendant
 Full-Time,Isabella Moore,406,Information Technology,Temporary Computer Assistant
+Full-Time,Ava Brown,407,Information Technology,Temporary Computer Assistant
+Full-Time,Olivia Clark,151,ULAC,Assistant Senior Instructor
+Full-Time,Noah Walker,152,ULAC,Lead Instructor
 Full-Time,Benjamin Hall,282,Clinical,Clinical Tutor
+Part-Time,John Skywalker,32030,,LibraryAssistant
+Full-Time,Charlotte White,291,Clinical,Therapies Regional Supervisors Regional Placement Facilitator
+Full-Time,Sophie Martinez,173,Academic,Teaching Assistant
+Full-Time,Olivia Harrison,301,Administrative,Senior Administrative Officer III
+Full-Time,Liam Brown,302,Information Technology,Analyst Programmer II
+Full-Time,Ava Clark,303,Information Technology,Analyst Programmer I
+Full-Time,Lucas Martinez,304,Information Technology,Senior Computer Operator
+Full-Time,James Donovan,182,Academic,Associate Professor A
+Part-Time,Eric Cartman,70840,,LabTutor
+Full-Time,Sophia Carter,313,Administrative,Senior Administrative Officer I
+Part-Time,Micheal Connor,3006,,LabTutor
+Full-Time,Emily Smith,201,Library,Library Assistant
+Full-Time,Noah Davis,202,Education Procurement Services,EPS Category Manager
+Full-Time,Sophia Miller,203,Education Procurement Services,EPS Category Specialist Higher
+Full-Time,Lucas Brown,204,Education Procurement Services,EPS Category Specialist
+Part-Time,Adam Urban,28496,,ExamInvigilator
+Full-Time,Olivia Thomas,601,Service Staff,Sen Porter/Attendant
 Full-Time,William Anderson,602,Service Staff,Porter/Attendant
 Full-Time,Isabella Morris,603,Service Staff,Porter/Attendant
 Full-Time,Ethan Lewis,604,Service Staff,Grounds Supervisor
+Full-Time,Charlotte Taylor,605,Service Staff,Groundsworkperson
 Full-Time,Mason Hall,606,Service Staff,Senior Aide
+Full-Time,Olivia Green,607,Service Staff,Senior Aide
+Full-Time,Liam Clark,608,Service Staff,Groundsworkperson Machine Attendant
 Full-Time,Sophia Martinez,609,Service Staff,Service Staff Shift
+Full-Time,James Walker,610,Service Staff,Plant Maintenance Aide
 Full-Time,Amelia Brown,611,Service Staff,Grounds Foreperson
+Full-Time,Isabella Bennett,355,Administrative,Senior Administrator
+Full-Time,Ava Johnson,101,Library,Sub Librarian
 Full-Time,Mia Wilson,102,Teachers,University Teacher
+Full-Time,Sophia Clark,103,Library,Assistant Librarian I
+Full-Time,Liam Brown,104,Library,Senior Library Assistant
+Full-Time,Liam Harris,362,Clinical,Clinical Fellow
+Full-Time,Isabella Parker,106,Academic,Professor
+Full-Time,Noah Sullivan,107,Academic,Full Professor
 Full-Time,Mia Bennett,108,Academic,Assistant Professor
+Full-Time,Emily Carter,109,Academic,Full Professor
 Full-Time,Noah Sullivan,365,Administrative,Executive Administrator
-Full-Time,Sophie Martinez,173,Academic,Teaching Assistant
-Full-Time,Liam Brown,302,Information Technology,Analyst Programmer II
 Full-Time,Isabella Davis,622,Service Staff,Grounds Foreperson
+Full-Time,Alexander Moore,113,Teachers,Associate Teacher
+Full-Time,Sophia Miller,371,Clinical,Clinical Tutor
+Full-Time,Lucas Anderson,116,ULAC,CO-OP STUDENTS
+Full-Time,Liam Johnson,501,Technical,Chief Technical Officer
+Full-Time,Sophia Martinez,502,Technical,Technical Officer
+Full-Time,Noah Clark,503,Technical,Senior Technical Officer
 Part-Time,James Connolly,27383,,ExamSupervisor
+Full-Time,Emily Davis,504,Technical,Senior Lab Attendant
 Full-Time,James Wilson,505,Technical,Laboratory Attendant
 Full-Time,Ava Thompson,125,ULAC,Assistant Instructor
-Part-Time,Micheal Connor,3006,,LabTutor

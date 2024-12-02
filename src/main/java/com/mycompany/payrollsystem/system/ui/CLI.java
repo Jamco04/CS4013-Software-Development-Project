@@ -15,6 +15,15 @@ public class CLI {
     private static final String ADMIN_PASSWORD = "admin123";    //passwords are predefined
     private static final String HR_PASSWORD = "hr123";
 
+    /**
+     * Method to initiate the payroll system
+     * Allows user to select from 3 roles (admin/HR/Employee) to login as
+     * Runs the relevant cli method based on which one is chosen
+     * For both admin and hr, the authentication method is run first to ensure the user is an admin or hr staff
+     * If correct, their respective cli environment is run
+     * If incorrect 3 times, they are logged out.
+     * The employee login environment combines these steps into one
+     */
     public void run() {
         while (true) {
             System.out.println("Welcome to the Payroll System!");
@@ -49,8 +58,15 @@ public class CLI {
     }
 
 
-
     // Admin authentication
+
+    /**
+     * Ensures a maximum of 3 login attempts to prevent against password brute forcing
+     * If admin password is correct, return true which will allow the above method to run the admin cli environment
+     * if password is false 3 or more times, return false which will not allow the user to run the admin cli
+     * @return true if user inputs correct password in under 3 attempts, false if they don't
+     */
+
     private boolean authenticateAdmin() {
         int attemptsRemaining = 3;
 
@@ -74,7 +90,17 @@ public class CLI {
         }
     }
 
+
     // HR authentication
+
+    /**
+     * Ensures a maximum of 3 login attempts to prevent against password brute forcing
+     * If HR password is correct, return true which will allow the above method to run the HR cli environment
+     * if password is false 3 or more times, return false which will not allow the user to run the HR cli
+     * @return true if user inputs correct password in under 3 attempts, false if they don't
+     */
+
+    // pretty much the same code as authenticateAdmin()
     private boolean authenticateHR() {
         int attemptsRemaining = 3;
         while (true) {
@@ -97,6 +123,14 @@ public class CLI {
     }
 
     // Employee authentication
+
+    /**
+     * Method to authenticate an employees credentials, and run the employeeCli
+     * Prompts user for their id and verifies it exists
+     * Prompts user for the password associated with that id
+     * If the user enters the password incorrectly 3 times they are logged out
+     * If the user enters the correct password, the employeeCli is run
+     */
     private void authenticateAndRunEmployee() {
 
 
@@ -140,6 +174,14 @@ public class CLI {
         }
     }
 
+    /**
+     * A method to display the admin cli
+     * Displays an admin menu of 5 choices, add/view staff, generate payslips manually, logout
+     * And load sample employees (this method is here just for use during the project interview)
+     * Depending on which option the user picks using the cli, the respective method is run
+     * @param adminAccess instance of the Admin class
+     */
+
     private void runAdminCLI(Admin adminAccess) {
         boolean more = true;
         while (more) {
@@ -169,6 +211,15 @@ public class CLI {
         }
     }
 
+    /**
+     * A method to display the HR cli
+     * Displays an HR menu of 4 choices, perform annual promotion for a full time employee
+     * Promote a fullTime employee to a new salary scale
+     * Promote a partTime employee to their next scalePoint, and logout
+     * Depending on which option the user picks using the cli, the respective method is run
+     * @param hrAccess instance of the hr class
+     */
+
     private void runHRCLI(HR hrAccess) {
         boolean more = true;
         while (more) {
@@ -193,6 +244,14 @@ public class CLI {
             }
         }
     }
+
+    /**
+     * A method to display the employees cli
+     * Displays an employee menu of 4 choices, the employee can view their current details
+     * View any generated payslips, submit a payClaim (only works for partTime Employees), and logout.
+     * Depending on which option the user picks using the cli, the respective method is run
+     * @param employeeAccess instance of the employee class
+     */
 
     private void runEmployeeCLI(Employee employeeAccess) {
         boolean more = true;
@@ -219,6 +278,13 @@ public class CLI {
         }
     }
 
+    /**
+     * A method that allows a partTime employee to submit a payClaim
+     * The employee submits their hours worked, which is then stored
+     * If the employee trying to run this method is of type FullTimeEmployee, they get an error
+     * @param employeeAccess instance of the employee class
+     */
+
     private void submitPayClaim(Employee employeeAccess) {
         if (employeeAccess.getStaff() instanceof com.mycompany.payrollsystem.staff.PartTimeEmployee partTimeEmployee) {
             double hoursWorked;
@@ -238,6 +304,13 @@ public class CLI {
             System.out.println("Only part-time employees can submit pay claims.");
         }
     }
+
+    /**
+     * A helper method used within the submitPayClaim method
+     * Ensures that the value passed by the user is a double
+     * This is done to prevent errors from incorrect types being passsed into methods relating to pay
+     * @return the double passed by the user through the
+     */
 
 
     // Helper method to safely read a double value

@@ -7,6 +7,16 @@ import com.mycompany.payrollsystem.system.StaffContainer;
 import java.io.IOException;
 
 public class TestRunner {
+    /**
+     * Runs a test on the system
+     * Loads employees pay rates
+     * loads in employees
+     * Submits fabricated pay claims for both types of employees even though only partTime staff should be able to
+     * Generates and prints this month's payslips
+     * Clears all staff so as not to interfere in future running of the system
+     * @param args main method identifier
+     * @throws IOException error handling in case of an error being detected, will avoid a total systems crash
+     */
 
     public static void main(String[] args) throws IOException {
         PayrollSystem payrollSystem = new PayrollSystem();

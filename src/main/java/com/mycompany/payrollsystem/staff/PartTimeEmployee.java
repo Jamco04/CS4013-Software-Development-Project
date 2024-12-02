@@ -9,12 +9,16 @@ public class PartTimeEmployee extends Staff {
 
 
     /**
-     *
-     * @param name
-     * @param id
-     * @param title
-     * @param scalePoint
-     * @param password
+     * Constructor for a partTime employee
+     * Takes the below parameters and creates a partTimeEmployee object
+     * This is done by calling the default constructor specified in the staff class with
+     * name, id, title, scalePoint and password, just as in the fullTimeEmployee's constructor
+     * Then  payRate is calculated after and added to the object
+     * @param name employees name
+     * @param id employees id
+     * @param title employees starting title
+     * @param scalePoint employees starting scalePoint
+     * @param password employees starting password
      */
 
     public PartTimeEmployee(String name, int id, String title, int scalePoint, String password) {
@@ -23,9 +27,10 @@ public class PartTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @param hoursWorked
-     * @return
+     * A method to calculate a partTime employees pay based on hours worked and hourly rate
+     * it takes the number of hours worked as a parameter, and gets the pay from a method in the scaleLoader class
+     * @param hoursWorked number of hours worked by the employee
+     * @return the employees gross pay based on the hours worked this period
      */
 
     public double getPay(double hoursWorked) {    //sets payRate and return "salary"
@@ -37,8 +42,9 @@ public class PartTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * A method to advance a partTime employees scalePoint by one
+     * Their new payRate is then calculated using this information
+     * @return true if the scalePoint is updated, false if not
      */
 
     @Override
@@ -53,8 +59,8 @@ public class PartTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * toString method for displaying a partTime employees details
+     * @return displays a partTime Employees current name, id, title, scalePoint, and payRate
      */
 
     @Override

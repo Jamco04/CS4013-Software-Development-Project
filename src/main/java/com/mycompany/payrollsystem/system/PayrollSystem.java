@@ -1,6 +1,4 @@
-
 package com.mycompany.payrollsystem.system;
-
 
 import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.staff.PartTimeEmployee;
@@ -10,27 +8,33 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The PayrollSystem class is responsible for handling payroll-related operations
+ * including adding pay claims, generating payslips, calculating tax, and saving payslips to a CSV file
+ */
 public class PayrollSystem {
     private final HashMap<Integer, Double> payClaims = new HashMap<>(); // Tracks part-time employee pay claims
-    private static final double LOWER_RATE = 0.2;
-    private static final double UPPER_RATE = 0.4;
-    private static final double PRSI_RATE = 0.04;
-    private static final double UNION_FEE = 35;
-    private static final double HEALTH_INSURANCE_FEE = 40;
+    private static final double LOWER_RATE = 0.2; // Lower tax rate for income tax calculation
+    private static final double UPPER_RATE = 0.4; // Upper tax rate for income tax calculation
+    private static final double PRSI_RATE = 0.04; // PRSI (Pay Related Social Insurance) rate
+    private static final double UNION_FEE = 35; // Union fee for each employee
+    private static final double HEALTH_INSURANCE_FEE = 40; // Health insurance fee for each employee
 
+    /**
+     * Adds a payClaim for a part-time employee
+     * @param staffId The ID of the staff member submitting the payClaim
+     * @param hoursWorked The number of hours worked by the employee
+     * @return True if the payClaim is successfully added, false otherwise
+     */
     public boolean addPayClaim(int staffId, double hoursWorked) {
-
-
         LocalDate today = LocalDate.now();
         LocalDate secondFriday = today.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
 
-
-        if (today.isBefore(secondFriday)) { //AFTER TESTING CHANGE TO isAfter
+        if (today.isBefore(secondFriday)) { // After testing, change to isAfter
             System.out.println("Pay claims can no longer be submitted for this month.");
             return false;
         }
@@ -56,6 +60,10 @@ public class PayrollSystem {
         return true;
     }
 
+    /**
+     * Generates monthly payslips for all staff members
+     * @return A list of payslips for all staff members
+     */
     public ArrayList<Payslip> generateMonthlyPayslips() {
         ArrayList<Payslip> payslips = new ArrayList<>();
         LocalDate today = LocalDate.now();
@@ -65,12 +73,12 @@ public class PayrollSystem {
             return payslips;
         }
 
-        if (today.getDayOfMonth() == 25) {  //AFTER TESTING CHANGE TO !=25
+        if (today.getDayOfMonth() == 25) {  // After testing, change to !=25
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
         }
 
-        for (Staff staff : StaffContainer.getAllStaff()) {  //for every staff member
+        for (Staff staff : StaffContainer.getAllStaff()) {  // For every staff member
             Payslip payslip = generatePayslipForEmployee(staff);
             if (payslip != null) {
                 payslips.add(payslip);
@@ -84,6 +92,11 @@ public class PayrollSystem {
         return payslips;
     }
 
+    /**
+     * Generates a payslip for a specific employee
+     * @param staff staff member for whom the payslip is to be generated
+     * @return generated payslip for the employee, or null if the payslip cannot be generated
+     */
     public Payslip generatePayslipForEmployee(Staff staff) {
         double grossPay;
 
@@ -111,13 +124,18 @@ public class PayrollSystem {
         return payslip;
     }
 
-    // Clear all pay claims for the current month
+    /**
+     * Clears all pay claims for the current month.
+     */
     void clearPayClaims() {
         payClaims.clear();
         System.out.println("All pay claims have been cleared.");
     }
 
-
+    /**
+     * Saves the generated payslips to a CSV file.
+     * @param payslips list of payslips to save
+     */
     private void savePayslipsToCSV(ArrayList<Payslip> payslips) {
         String fileName = "Payslips_" + LocalDate.now() + ".csv";
         String fullPath = "src/output/" + fileName;
@@ -142,7 +160,11 @@ public class PayrollSystem {
         }
     }
 
-
+    /**
+     * Calculates the tax for an employee based on their annual salary.
+     * @param annualSalary annual salary of the employee
+     * @return calculated tax for the employee
+     */
     private double calculateTax(double annualSalary) {
         double tax = 0;
 
@@ -165,7 +187,9 @@ public class PayrollSystem {
     }
 
     /**
-     * Calculate Universal Social Charge (USC) rate.
+     * Calculates the Universal Social Charge (USC) rate based on the annual salary.
+     * @param annualSalary annual salary of the employee
+     * @return USC rate applicable for the given salary
      */
     private double calculateUSCRate(double annualSalary) {
         if (annualSalary <= 12012) {
@@ -179,6 +203,9 @@ public class PayrollSystem {
         }
     }
 
+    /**
+     * Generates and prints payslips for all employees.
+     */
     public void generateAndPrintPayslips() {
         ArrayList<Payslip> payslips = generateMonthlyPayslips();
         for (Payslip payslip : payslips) {

@@ -9,15 +9,26 @@ import com.mycompany.payrollsystem.system.StaffContainer;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-
+/**
+ * The HR class is responsible for handling human resources operations, including employee promotions
+ * Bnoth annual promotions for full-time employees and scale point promotions for part-time employees
+ * It also allows for manual promotion of employees to the next salary scale based on their time spent at the top of-
+ * Their payScale, and if they agree to such a promotion.
+ */
 public class HR {
     private final Scanner in = new Scanner(System.in);
 
-    public void annualPromotion() { //promotion every October for all FullTime Employees
+    /**
+     * Performs annual promotions for all full-time employees in the month of October
+     * If it's not October, the promotion process will not be initiated.
+     * Slightly edited manually for testing purposes however, otherwise interview would have to
+     * Take place on the 25th of decemeber which I doubt anyone wants
+     */
+    public void annualPromotion() {
         LocalDate today = LocalDate.now();
 
         // Ensure it's October
-        if (today.getMonthValue() == 10) {  //AFTER TESTING CHANGE TO !=
+        if (today.getMonthValue() == 10) {  // AFTER TESTING CHANGE TO !=
             System.out.println("Annual promotions can only be conducted in October.");
             return;
         }
@@ -36,6 +47,11 @@ public class HR {
         }
     }
 
+    /**
+     * Manually promotes a full-time employee to the next salary scale
+     * This process involves inputting the employee's ID, authenticating the employee-
+     * and selecting a new salary title for promotion
+     */
     public void promoteToNextSalaryScale() {
         System.out.println("Enter the ID of the full-time employee to promote:");
         int id = readInt();
@@ -63,12 +79,10 @@ public class HR {
 
         System.out.println("Enter new salary scale (title) for the employee:");
         String newTitle = "";
-        while (!(ScaleLoader.validTitle(newTitle))){
+        while (!(ScaleLoader.validTitle(newTitle))) {
             System.out.println("Invalid title. Please enter a valid title.");
             newTitle = in.nextLine().trim();
         }
-
-
 
         // Calculate new scale point based on time spent at the top
         int newScalePoint = calculateNewScalePoint(fullTimeEmployee);
@@ -77,6 +91,11 @@ public class HR {
         System.out.println("Successfully promoted " + fullTimeEmployee.getName() + " to title " + newTitle + " at scale point " + newScalePoint);
     }
 
+    /**
+     * Calculates the new scale point for a full-time employee based on their years spent at the top of their current scale
+     * @param employee full-time employee to calculate the new scale point for
+     * @return calculated new scale point
+     */
     private int calculateNewScalePoint(FullTimeEmployee employee) {
         long yearsAtTop = employee.getYearsAtTop();
 
@@ -90,6 +109,11 @@ public class HR {
         }
     }
 
+    /**
+     * Reads an integer input from the user
+     * This method handles invalid input by prompting the user until a valid integer is entered
+     * @return The valid integer input entered by the user
+     */
     private int readInt() {
         while (true) {
             try {
@@ -100,6 +124,11 @@ public class HR {
         }
     }
 
+    /**
+     * Manually promotes a part-time employee to the next scale point
+     * This process involves inputting the employee's ID and updating their scale point if they are eligible and agree
+     * To do so
+     */
     public void promoteToNextScalePoint() {
         System.out.println("Enter the ID of the part-time employee to promote:");
         int id = Integer.parseInt(in.nextLine().trim());

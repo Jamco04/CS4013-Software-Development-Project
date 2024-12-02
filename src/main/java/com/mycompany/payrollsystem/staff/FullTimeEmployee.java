@@ -4,6 +4,9 @@ import com.mycompany.payrollsystem.system.ScaleLoader;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
 
+/**
+ *
+ */
 public class FullTimeEmployee extends Staff {
 
     private String category;    //only FullTimeEmployee has category (Director/Academic/...)
@@ -12,6 +15,9 @@ public class FullTimeEmployee extends Staff {
 
     /**
      * Constructor for full time employees
+     * Takes the below parameters and creates a fullTimeEmployee object
+     * This is done by calling the default constructor specified in the staff class with
+     * name, id, title, scalePoint and password, then  with category and salary after as they are not in the super constructor
      * @param name employees name
      * @param id employees id
      * @param category employees current category
@@ -29,7 +35,11 @@ public class FullTimeEmployee extends Staff {
 
 
     /**
-     *
+     * A method with no added parameters
+     * This method checks whether an employee's scale point has reached the maximum for their job title
+     * If the employee reaches their top scale point, the date and time at which this occurred is logged
+     * This time since the employee has been at the max scalePoint is stored in topScaleStartTime
+     * It then resets the topScaleStartTime to 0 when an employee is no longer at the top of their scalePoint scale
      */
 
     public void checkTopScale(){
@@ -45,8 +55,11 @@ public class FullTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * A method with no parameters
+     * This method advances an employees current scalePoint by one-
+     * provided their current scalePoint is not the maximum scale point within their title
+     * Also automatically adjusts the employee's salary after each scale point update.
+     * @return false if at the top of the scalePoint, true if not
      */
 
     public boolean updateScalePoint() {
@@ -62,8 +75,8 @@ public class FullTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * This method is used to determine how long (in full years) an employee has been at their maximum scale point.
+     * @return how many full years the employee has been at the top of their payscale
      */
 
     public long getYearsAtTop() {
@@ -72,8 +85,13 @@ public class FullTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @param newTitle
+     * A method used for promoting an employee to a new title
+     * Takes the new title the employee will be promoted to as the only parameter
+     * Employees default datafield "title" is updated to the new one which is passed in
+     * Determines how many years the employee has been at the top scale point for their previous title.
+     * Assigns new scalePoint within new title based off that
+     * Employees salary is recalculated to reflect their new position
+     * @param newTitle The employees new title which they are being promoted to
      */
 
     public void promoteToNewTitle(String newTitle) {
@@ -84,7 +102,8 @@ public class FullTimeEmployee extends Staff {
 
 
         scalePoint = Math.min(yearsAtTop, ScaleLoader.getMaxScalePoints(newTitle));   //new scalepoint will be years at top (limit is the maximum scale point)
-        scalePoint = scalePoint == 0 ? 1 : scalePoint; //years could be 0, so make skillpoint 1
+        if (scalePoint == 0) {
+            scalePoint = 1; } //years could be 0, in which case make scalePoint 1
 
         salary = getSalary();
         checkTopScale();
@@ -92,8 +111,9 @@ public class FullTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * Calls the method getPay from the ScaleLoader class
+     * Calls this method passing category, title, and the string value of the integer scalePoint
+     * @return the employee's current salary based on their category, title, and scalePoint
      */
 
     public double getSalary() {
@@ -101,8 +121,8 @@ public class FullTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * A simple getter method for getting an enployees category
+     * @return Employees current category
      */
 
     public String getCategory() {
@@ -110,8 +130,8 @@ public class FullTimeEmployee extends Staff {
     }
 
     /**
-     *
-     * @return
+     * toString method for displaying a full time employees details
+     * @return displays a fullTime Employees current name, id, category, title, scalePoint, and salary
      */
 
     @Override
