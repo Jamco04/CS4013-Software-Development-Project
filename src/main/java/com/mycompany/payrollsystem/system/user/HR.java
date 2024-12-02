@@ -78,7 +78,7 @@ public class HR {
         }
 
         System.out.println("Enter new salary scale (title) for the employee:");
-        String newTitle = "";
+        String newTitle = in.nextLine().trim();
         while (!(ScaleLoader.validTitle(newTitle))) {
             System.out.println("Invalid title. Please enter a valid title.");
             newTitle = in.nextLine().trim();
