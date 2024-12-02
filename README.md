@@ -1,5 +1,7 @@
 # CS4013 - Software Development Project
 
+Repository: https://github.com/Jamco04/CS4013-Software-Development-Project/tree/main
+
 ## Payroll System HelpFile
 
 This HelpFile provides an overview of the Payroll System functionalities.
