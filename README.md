@@ -69,7 +69,12 @@ This application provides a **Command-Line Interface (CLI)** for performing payr
 
 ### **Employee Role**
 
-1. **Employee Menu Options**
+1. **Employee Login**
+   - Enter the employee unique ID (employee has to exist in the system).
+   - Enter the employee's password (created when registering employee).
+   - You have **3 login attempts**.
+
+2. **Employee Menu Options**
    - **1) View Details**  
      Display the personal details of the logged-in employee.
    - **2) View Payslips**  
