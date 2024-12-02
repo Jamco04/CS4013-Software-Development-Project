@@ -1,6 +1,7 @@
 # CS4013 - Software Development Project
 
 Repository: https://github.com/Jamco04/CS4013-Software-Development-Project/tree/main
+- Contains: Source Code, CSV files (Salaries, SampleEmployees), CRC Cards, UML Class Diagram, Contributions File, this ReadMe/HelpFile
 
 ## Payroll System HelpFile
 
