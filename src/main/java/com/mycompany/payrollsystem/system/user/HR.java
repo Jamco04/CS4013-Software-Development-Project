@@ -28,7 +28,7 @@ public class HR {
         LocalDate today = LocalDate.now();
 
         // Ensure it's October
-        if (today.getMonthValue() == 10) {  // AFTER TESTING CHANGE TO !=
+        if (today.getMonthValue() != 10) {  // AFTER TESTING CHANGE TO !=
             System.out.println("Annual promotions can only be conducted in October.");
             return;
         }

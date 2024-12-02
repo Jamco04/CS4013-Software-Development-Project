@@ -1,12 +1,9 @@
 package com.mycompany.payrollsystem.system.javafx;
 
+import com.mycompany.payrollsystem.system.ui.CLI;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -49,7 +46,7 @@ public class LoginController {
                 showAlert("Login Success", "Welcome!", Alert.AlertType.INFORMATION);
 
                 if ("Admin".equalsIgnoreCase(role)) {
-                    navigateToAdminMenu();
+                    //navigateToAdminMenu();
                 }
             } else {
                 showAlert("Login Failed", "Invalid credentials or role.", Alert.AlertType.ERROR);
@@ -59,7 +56,7 @@ public class LoginController {
         }
     }
 
-    private void navigateToAdminMenu() {
+    /*private void navigateToAdminMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminMenu.fxml"));
             Parent root = loader.load();
@@ -69,15 +66,21 @@ public class LoginController {
         } catch (Exception e) {
             showAlert("Error", "Unable to load Admin Menu: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-    }
+    }*/
+
+   // NOT YET FUNCTIONAL THE WAY WE INTENDED. WE WOULD USE FUNCTIONS FROM CLI TO IMPLEMENT LOGIC IN GUI.
 
     private boolean authenticate(String role, String username, String password) {
-        // Replace with real authentication logic
-        if ("Admin".equalsIgnoreCase(role) && "admin123".equals(password)) return true;
-        if ("HR".equalsIgnoreCase(role) && "hr123".equals(password)) return true;
-        if ("Employee".equalsIgnoreCase(role) && "employee123".equals(password)) return true;
+
+        CLI cli = new CLI();
+        //right now only admin validation and not yet through CLI
+        if ("Admin".equalsIgnoreCase(role) && "admin123".equals(password)){
+            return true;
+        }
         return false;
     }
+
+
 
     private void showAlert(String title, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
