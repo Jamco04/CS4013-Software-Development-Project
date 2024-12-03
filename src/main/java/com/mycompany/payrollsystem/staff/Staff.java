@@ -1,11 +1,13 @@
 package com.mycompany.payrollsystem.staff;
 
 
-import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.Payslip;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+//Staff
+//(Adam+James)
 
 public abstract class Staff {
 

@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//ScaleLoader
+//James - getPay, generateKey
+//Enda - getMaxScalePoints, getCategoryFromTitle
+//Andrei - validTitle, validCategory
+//Adam - loadScales
+
 /**
  * A class to load and manage scale data for employee titles, categories, and pay grades
  */

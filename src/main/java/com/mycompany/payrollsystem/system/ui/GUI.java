@@ -12,8 +12,10 @@ import java.util.Objects;
 // --module-path /Users/adamurban/documents/javafx-sdk-23.0.1/lib --add-modules javafx.controls,javafx.fxml
 //com.mycompany.payrollsystem.system.ui.GUI
 
-//run through configuration
+//run through setup configuration
 
+//GUI
+//(Adam+James)
 
 public class GUI extends Application {
 

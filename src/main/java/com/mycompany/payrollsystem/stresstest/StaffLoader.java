@@ -6,7 +6,11 @@ import com.mycompany.payrollsystem.staff.FullTimeEmployee;
 import com.mycompany.payrollsystem.system.ScaleLoader;
 import com.mycompany.payrollsystem.system.StaffContainer;
 
+// StaffLoader
+// (James+Enda) - addRandomStaffFromDatabase
+
 public class StaffLoader {
+
     /**
      * A method to be called by the admin from the cli taking two parameters
      * One being the location of the csv file holding the sample employees

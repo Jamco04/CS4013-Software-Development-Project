@@ -2,7 +2,8 @@ package com.mycompany.payrollsystem.staff;
 
 import com.mycompany.payrollsystem.system.ScaleLoader;
 
-
+//PartTimeEmployee
+//(Adam+James)
 
 public class PartTimeEmployee extends Staff {
     private double payRate; //hourly rate

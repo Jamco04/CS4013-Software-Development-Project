@@ -7,11 +7,17 @@ import java.time.LocalDateTime;
 /**
  *
  */
+
+//FullTimeEmployee
+//(Adam+James)
+
 public class FullTimeEmployee extends Staff {
 
     private String category;    //only FullTimeEmployee has category (Director/Academic/...)
     private double salary;      //only FullTimeEmployee has annual salary
     private LocalDateTime topScaleStartTime; //Checks time that employee has been at the top scalePoint
+
+
 
     /**
      * Constructor for full time employees

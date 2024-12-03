@@ -9,12 +9,18 @@ import com.mycompany.payrollsystem.system.StaffContainer;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+//HR
+//James - promoteToNextSalaryScale
+//Adam - annualPromotion
+//Andrei - readInt, promoteToNextScalePoint
+
 /**
  * The HR class is responsible for handling human resources operations, including employee promotions
  * Bnoth annual promotions for full-time employees and scale point promotions for part-time employees
  * It also allows for manual promotion of employees to the next salary scale based on their time spent at the top of-
  * Their payScale, and if they agree to such a promotion.
  */
+
 public class HR {
     private final Scanner in = new Scanner(System.in);
 
@@ -28,7 +34,7 @@ public class HR {
         LocalDate today = LocalDate.now();
 
         // Ensure it's October
-        if (today.getMonthValue() != 10) {  // AFTER TESTING CHANGE TO !=
+        if (today.getMonthValue() == 10) {  // AFTER TESTING CHANGE TO !=
             System.out.println("Annual promotions can only be conducted in October.");
             return;
         }

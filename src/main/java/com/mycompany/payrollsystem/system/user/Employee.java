@@ -7,8 +7,10 @@ import com.mycompany.payrollsystem.staff.Staff;
  * Allows them to view their personal details and payslips
  */
 
-// intelliJ seems to suggest this class can be a record?
-// Future investigation may be required
+//Employee
+//Andrei viewDetails
+//Adam Employee, viewPaySlips, getStaff
+
 public class Employee {
     private final Staff staff;
 

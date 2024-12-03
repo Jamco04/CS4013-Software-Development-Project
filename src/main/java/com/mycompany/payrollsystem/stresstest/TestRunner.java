@@ -6,6 +6,9 @@ import com.mycompany.payrollsystem.system.StaffContainer;
 
 import java.io.IOException;
 
+//TestRunner
+//(Adam+Enda) - main class testing methods
+
 public class TestRunner {
     /**
      * Runs a test on the system

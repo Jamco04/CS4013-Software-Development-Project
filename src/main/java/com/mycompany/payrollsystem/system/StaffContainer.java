@@ -5,6 +5,11 @@ import com.mycompany.payrollsystem.staff.Staff;
 import java.util.Collection;
 import java.util.HashMap;
 
+//StaffContainer
+//Andrei - add
+//Enda - listAllStaff, getAllStaff, clearAllStaff, isEmpty
+//Adam - getStaffById
+
 /**
  * A class to manage a collection of staff using a HashMap for fast lookup by staff ID
  */

@@ -9,6 +9,12 @@ import java.util.Scanner;
 
 import static com.mycompany.payrollsystem.stresstest.StaffLoader.addRandomStaffFromDatabase;
 
+//CLI
+//James - authAdmin runAdmin submitPayclaim
+//Adam - readDouble run runEmployeeCli
+//Enda - authHR runHR
+//Andrei - authAndRunEmployee
+
 public class CLI {
     private final Scanner in = new Scanner(System.in);
     private final PayrollSystem payrollSystem = new PayrollSystem();
@@ -24,6 +30,8 @@ public class CLI {
      * If incorrect 3 times, they are logged out.
      * The employee login environment combines these steps into one
      */
+
+    //
     public void run() {
         while (true) {
             System.out.println("Welcome to the Payroll System!");

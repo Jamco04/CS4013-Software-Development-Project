@@ -10,6 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+//Admin
+//Adam - viewStaff, saveAllStaffToCSV
+//Enda - readInt
+//Andrei - readString
+//James - addStaff
+
 /**
  * Admin class represents an admin user in the payroll system
  * Provides functionality to manage staff such as adding staff members,

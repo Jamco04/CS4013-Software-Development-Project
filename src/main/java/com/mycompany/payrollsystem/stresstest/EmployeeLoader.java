@@ -8,7 +8,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+//EmployeeLoader
+//Adam - loadEmployeesFromFile
+//James - parseEmployee
+
 public class EmployeeLoader {
+
+
+
     /**
      * Method that loads employees from the specified csv file location which is passed as the only parameter
      * Uses the FileReader imported package to read the data from the csv file

@@ -16,6 +16,15 @@ import java.util.HashMap;
  * The PayrollSystem class is responsible for handling payroll-related operations
  * including adding pay claims, generating payslips, calculating tax, and saving payslips to a CSV file
  */
+
+
+//PayRollSystem
+//Andrei - calulcateTax, calculate usc, savePayslipsToCSV
+//James - addPayClaim, clearPayClaim
+//Adam - generateMonthlyPayslip, generatePayslipForEmployee, generateAndPrintPayslips
+
+
+
 public class PayrollSystem {
     private final HashMap<Integer, Double> payClaims = new HashMap<>(); // Tracks part-time employee pay claims
     private static final double LOWER_RATE = 0.2; // Lower tax rate for income tax calculation
@@ -73,7 +82,7 @@ public class PayrollSystem {
             return payslips;
         }
 
-        if (today.getDayOfMonth() != 25) {  // After testing, change to !=25
+        if (today.getDayOfMonth() == 25) {  // After testing, change to !=25
             System.out.println("Payslips are generated only on the 25th of the month.");
             return payslips;
         }
